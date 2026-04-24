@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Excavate</title>
+  <meta name="description" content="The story behind Excavate Sports Bar & Hookah Lounge." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body data-mode="lounge">
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Nav drawer (outside nav to avoid stacking context issues) -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reserve.html">Reserve</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Excavate" /></a>
+      <div class="nav-right">
+      <div class="nav-mode-toggle" role="tablist">
+        <button data-mode-btn="sports" type="button">Sports</button>
+        <button data-mode-btn="lounge" type="button">Lounge</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="align-items:center;">
+        <div>
+          <span class="eyebrow">Our Story</span>
+          <h2>A Sports Bar. A Lounge. One Address.</h2>
+          <p>We opened Excavate because we were tired of picking. If you wanted sports, you got bright lights and cheap beer. If you wanted a lounge, you got deep seats but no game. We wanted both — the roar of the final quarter and the low hum of a room that knows how to slow down.</p>
+          <p>So we built it. Twenty screens. Forty flavors. One unmistakable vibe.</p>
+          <p>The name comes from the idea that the best nights are the ones you <em>dig into</em> — the stories you uncover with your crew over wings, cocktails, and a long hookah session. That’s what we’re here for.</p>
+        </div>
+        <div>
+          <div class="gallery" style="grid-auto-rows:160px;">
+            <div class="tile tall"><div class="placeholder">Founders</div></div>
+            <div class="tile"><div class="placeholder">The Build</div></div>
+            <div class="tile"><div class="placeholder">Opening Night</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="text-center mb-3">
+        <span class="eyebrow">What We Believe</span>
+        <h2>The Excavate Code</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>Both. Always.</h3><p>We don’t make you choose between the game and the vibe.</p></div>
+        <div class="card"><h3>Hospitality Forward.</h3><p>Every table is a table we’d want to sit at ourselves.</p></div>
+        <div class="card"><h3>Quality Over Cover.</h3><p>Real food. Real pours. Real premium hookah. No cutting corners.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section text-center">
+    <div class="container">
+      <h2>Come See the Room.</h2>
+      <p class="muted" style="max-width:520px; margin: 0 auto 2rem;">Words don’t do it justice. Reserve or walk in — we’ll save you a seat.</p>
+      <div class="cta-row">
+        <a href="reserve.html" class="btn btn-solid btn-xl">Reserve a Table</a>
+        <a href="contact.html" class="btn btn-xl">Find Us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div><img src="assets/logo.png" alt="Excavate" style="height:60px; margin-bottom:1rem;" /><p class="muted" style="max-width:320px;">Excavate Sports Bar &amp; Hookah Lounge — where live sports, premium hookah, and nightlife come together.</p></div>
+        <div><h4>Visit</h4><ul><li>11910 Coit Rd</li><li>Frisco, TX 75035</li><li>(813) 922-8283</li></ul></div>
+        <div><h4>Hours</h4><ul><li>Mon–Thu · 4 PM – 1 AM</li><li>Fri–Sat · 12 PM – 2 AM</li><li>Sun · 11 AM – 12 AM</li></ul></div>
+        <div><h4>Explore</h4><ul><li><a href="menu.html">Menu</a></li><li><a href="events.html">Events</a></li><li><a href="reserve.html">Reservations</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="legal"><span>© <span id="year"></span> Excavate Sports Bar &amp; Hookah Lounge.</span><div class="socials"><a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">X</a></div></div>
+    </div>
+  </footer>
+
+  <div class="mode-flash" id="modeFlash"></div>
+  <script src="app.js"></script>
+</body>
+</html>

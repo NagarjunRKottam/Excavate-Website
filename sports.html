@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sports Mode — Excavate</title>
+  <meta name="description" content="Live sports, big screens, game-day menu — Excavate Sports Mode." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body data-mode="sports">
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Nav drawer (outside nav to avoid stacking context issues) -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="sports.html" class="active">Sports</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reserve.html">Reserve</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Excavate" /></a>
+      <div class="nav-mode-toggle">
+        <button data-mode-btn="sports" class="active" type="button">Sports</button>
+        <button data-mode-btn="lounge" type="button">Lounge</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="atmosphere"><div class="smoke-blob s1"></div><div class="smoke-blob s2"></div></div>
+    <div class="stadium-lights"></div>
+    <div class="container">
+      <span class="eyebrow">Sports Mode</span>
+      <h1>Every Screen. Every Play.</h1>
+      <p class="muted">Kickoff to overtime. Twenty big screens. Sound on the main wall. Game-day menu live all day.</p>
+    </div>
+  </header>
+
+  <!-- LIVE NOW -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-3">
+        <span class="eyebrow">Live Now</span>
+        <h2>On the Screens</h2>
+      </div>
+      <div class="grid-3">
+        <div class="match-card">
+          <span class="live">Live</span>
+          <span class="league">NFL · Q3</span>
+          <div class="teams"><span>Home</span><span class="vs">21</span><span>Away</span></div>
+          <span class="time">Main wall · Sound on</span>
+        </div>
+        <div class="match-card">
+          <span class="league">NBA · 7:30 PM</span>
+          <div class="teams"><span>Home</span><span class="vs">vs</span><span>Away</span></div>
+          <span class="time">East wall · Tipoff in 40 min</span>
+        </div>
+        <div class="match-card">
+          <span class="league">Soccer · 9:00 PM</span>
+          <div class="teams"><span>Club A</span><span class="vs">vs</span><span>Club B</span></div>
+          <span class="time">Booths 4–6 · UHD</span>
+        </div>
+        <div class="match-card">
+          <span class="league">UFC · Sat 10 PM</span>
+          <div class="teams"><span>Main Card</span><span class="vs">·</span><span>PPV</span></div>
+          <span class="time">Reserve VIP now</span>
+        </div>
+        <div class="match-card">
+          <span class="league">MLB · Daily</span>
+          <div class="teams"><span>Multiple</span><span class="vs">·</span><span>Games</span></div>
+          <span class="time">Every league, every screen</span>
+        </div>
+        <div class="match-card">
+          <span class="league">F1 · Sunday</span>
+          <div class="teams"><span>Grand Prix</span><span class="vs">·</span><span>Live</span></div>
+          <span class="time">Start line booths</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN ZONES -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="text-center mb-3">
+        <span class="eyebrow">The Floor</span>
+        <h2>Big Screen Zones</h2>
+        <p class="muted" style="max-width:560px; margin:0 auto;">Pick your vibe. We’ll set the audio and the angle.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>The Main Wall</h3>
+          <p>Eight-screen video wall, stadium audio, standing room &amp; high-tops. For the biggest game of the night.</p>
+        </div>
+        <div class="card">
+          <h3>The Booths</h3>
+          <p>Private 75" screens at every booth. Pick your own audio channel on the table tablet. Great for groups of 4–8.</p>
+        </div>
+        <div class="card">
+          <h3>The VIP Zones</h3>
+          <p>Couch seating, dedicated server, private screen, bottle service. For when you want the game — and a little more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME-DAY MENU TEASER -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-2" style="align-items:center;">
+        <div>
+          <span class="eyebrow">Game-Day Menu</span>
+          <h2>Fuel for Four Quarters.</h2>
+          <p>Wings by the 20-count. Loaded nachos. Smash burgers. Buckets of beer. Order without missing a snap — QR at every table.</p>
+          <div class="cta-row" style="justify-content:flex-start;">
+            <a href="menu.html" class="btn btn-solid">View Game-Day Menu</a>
+            <a href="reserve.html" class="btn">Reserve a Zone</a>
+          </div>
+        </div>
+        <div>
+          <div class="combo-card">
+            <span class="pill">Game-Day Deal</span>
+            <h3>The Double Header</h3>
+            <ul>
+              <li>20 wings (pick 2 flavors)</li>
+              <li>Bucket of 6 domestic beers</li>
+              <li>Plus one premium hookah</li>
+            </ul>
+            <span class="price-big">$59</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section text-center">
+    <div class="container">
+      <h2>Game On.</h2>
+      <p class="muted" style="max-width:520px; margin:0 auto 2rem;">Reserve your zone before kickoff — weekends book fast.</p>
+      <div class="cta-row">
+        <a href="reserve.html" class="btn btn-solid btn-xl">Reserve a Zone</a>
+        <a href="lounge.html" class="btn btn-xl">Switch to Lounge</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div><img src="assets/logo.png" alt="Excavate" style="height:60px; margin-bottom:1rem;" /><p class="muted" style="max-width:320px;">Excavate Sports Bar &amp; Hookah Lounge — where live sports, premium hookah, and nightlife come together.</p></div>
+        <div><h4>Visit</h4><ul><li>11910 Coit Rd</li><li>Frisco, TX 75035</li><li>(813) 922-8283</li></ul></div>
+        <div><h4>Hours</h4><ul><li>Mon–Thu · 4 PM – 1 AM</li><li>Fri–Sat · 12 PM – 2 AM</li><li>Sun · 11 AM – 12 AM</li></ul></div>
+        <div><h4>Explore</h4><ul><li><a href="menu.html">Menu</a></li><li><a href="events.html">Events</a></li><li><a href="reserve.html">Reservations</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="legal"><span>© <span id="year"></span> Excavate Sports Bar &amp; Hookah Lounge.</span><div class="socials"><a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">X</a></div></div>
+    </div>
+  </footer>
+
+  <div class="mode-flash" id="modeFlash"></div>
+  <script src="app.js"></script>
+</body>
+</html>

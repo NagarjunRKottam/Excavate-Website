@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Excavate</title>
+  <meta name="description" content="Game-Day Menu, Lounge Menu, and Signature Combos at Excavate Sports Bar & Hookah Lounge." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+  <style>
+    /* Hero */
+    .menu-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('assets/hero-bg.png') center/cover no-repeat;
+      padding-top: 140px;
+      padding-bottom: 60px;
+    }
+    .menu-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 0;
+    }
+    .menu-hero-inner { position: relative; z-index: 1; width: 100%; }
+    .menu-hero-title {
+      font-size: clamp(3.5rem, 10vw, 7rem) !important;
+      color: #fff !important;
+      margin: 0 0 0.4rem !important;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .menu-hero-divider { width: 70px; height: 2px; background: #e4572e; margin: 0.7rem auto; }
+    .menu-hero-sub { color: rgba(255,255,255,0.75); font-style: italic; font-size: 1rem; }
+
+    /* Lounge mode: hide sports content */
+    body[data-mode="lounge"] .sports-only { display: none !important; }
+    body[data-mode="lounge"] .lounge-always-show { display: block !important; }
+
+    /* Hookah list */
+    .hk-section { margin-bottom: 3rem; }
+    .hk-heading {
+      font-family: 'Cormorant Garamond', Georgia, serif !important;
+      font-size: 1.7rem !important;
+      font-weight: 600 !important;
+      color: #e4572e !important;
+      text-transform: none !important;
+      letter-spacing: 0.01em !important;
+      border-bottom: 1px solid rgba(228,87,46,0.35);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0;
+    }
+    .hk-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 3rem;
+    }
+    @media (max-width: 640px) { .hk-list { grid-template-columns: 1fr; } }
+    .hk-item {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .hk-name {
+      color: #ece4f5;
+      font-size: 1rem;
+      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+      flex-shrink: 0;
+    }
+    .hk-dots {
+      flex: 1;
+      height: 1px;
+      margin: 0 0.8rem;
+      min-width: 16px;
+      background-image: repeating-linear-gradient(to right, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.22) 3px, transparent 3px, transparent 9px);
+    }
+    .hk-price {
+      color: #e4572e;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .hk-policy { text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; margin-top: 1rem; }
+    .hk-policy h4 { color: #e4572e; letter-spacing: 0.15em; font-size: 0.95rem; }
+    .hk-policy p { color: #a99bbf; font-size: 0.9rem; margin-bottom: 0.3rem; }
+    .hk-note { font-style: italic; font-size: 0.8rem !important; margin-top: 0.8rem !important; }
+  </style>
+</head>
+<body data-mode="lounge">
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Nav drawer (outside nav to avoid stacking context issues) -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html" class="active">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reserve.html">Reserve</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Excavate" /></a>
+      <div class="nav-right">
+      <div class="nav-mode-toggle" role="tablist">
+        <button data-mode-btn="sports" type="button">Sports</button>
+        <button data-mode-btn="lounge" type="button">Lounge</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Menu Hero -->
+  <header class="menu-hero">
+    <div class="menu-hero-inner">
+      <h1 class="menu-hero-title">Menu</h1>
+      <div class="menu-hero-divider"></div>
+      <p class="menu-hero-sub">A curated selection of premium hookah flavors and signature blends</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:2rem;">
+    <div class="container">
+      <!-- Tabs — hidden in lounge mode -->
+      <div class="menu-tabs sports-only" role="tablist">
+        <button class="menu-tab" data-tab="gameday">Game-Day Menu</button>
+        <button class="menu-tab" data-tab="lounge">Lounge Menu</button>
+        <button class="menu-tab" data-tab="drinks">Drinks &amp; Cocktails</button>
+        <button class="menu-tab active" data-tab="hookah">Hookah Flavors</button>
+        <button class="menu-tab" data-tab="combos">Signature Combos</button>
+      </div>
+
+      <!-- GAME DAY -->
+      <div class="menu-panel sports-only" data-panel="gameday">
+        <h2>Starters &amp; Shareables</h2>
+        <ul class="menu-list">
+          <li><div><span class="item-name">Excavate Wings (10 pc)</span><span class="item-desc">Buffalo · BBQ · Lemon Pepper · Hot Honey · Garlic Parm · Jerk</span></div><span class="item-price">$15</span></li>
+          <li><div><span class="item-name">Loaded Nachos</span><span class="item-desc">Tortilla chips, queso, brisket, pico, jalapeño, sour cream</span></div><span class="item-price">$16</span></li>
+          <li><div><span class="item-name">Mozzarella Sticks</span><span class="item-desc">Hand-breaded · marinara</span></div><span class="item-price">$11</span></li>
+          <li><div><span class="item-name">Loaded Fries</span><span class="item-desc">Cheese, bacon, scallions, ranch drizzle</span></div><span class="item-price">$12</span></li>
+          <li><div><span class="item-name">Chicken Tenders (5)</span><span class="item-desc">Choice of dipping sauce · add fries $3</span></div><span class="item-price">$13</span></li>
+        </ul>
+
+        <h2 class="mt-3">Burgers &amp; Handhelds</h2>
+        <ul class="menu-list">
+          <li><div><span class="item-name">Excavate Smash Burger</span><span class="item-desc">Double patty, American, caramelized onion, house sauce, brioche</span></div><span class="item-price">$16</span></li>
+          <li><div><span class="item-name">BBQ Brisket Sandwich</span><span class="item-desc">Slow-smoked brisket, crispy onions, house BBQ</span></div><span class="item-price">$17</span></li>
+          <li><div><span class="item-name">Buffalo Chicken Wrap</span><span class="item-desc">Crispy chicken, hot sauce, ranch, lettuce, tomato</span></div><span class="item-price">$14</span></li>
+          <li><div><span class="item-name">The Game-Day Dog</span><span class="item-desc">Footlong, chili, cheese, diced onion</span></div><span class="item-price">$12</span></li>
+        </ul>
+
+        <h2 class="mt-3">Mains</h2>
+        <ul class="menu-list">
+          <li><div><span class="item-name">Ribeye Steak Frites</span><span class="item-desc">12oz ribeye, garlic butter, hand-cut fries</span></div><span class="item-price">$32</span></li>
+          <li><div><span class="item-name">Grilled Salmon</span><span class="item-desc">Lemon-herb butter, seasonal vegetables</span></div><span class="item-price">$26</span></li>
+          <li><div><span class="item-name">Chicken &amp; Waffle</span><span class="item-desc">Crispy chicken, Belgian waffle, hot honey</span></div><span class="item-price">$19</span></li>
+        </ul>
+      </div>
+
+      <!-- LOUNGE -->
+      <div class="menu-panel sports-only" data-panel="lounge">
+        <h2>Light Bites (Until 2 AM)</h2>
+        <ul class="menu-list">
+          <li><div><span class="item-name">Hummus Trio</span><span class="item-desc">Classic · Roasted red pepper · Spicy harissa · warm pita</span></div><span class="item-price">$14</span></li>
+          <li><div><span class="item-name">Charcuterie Board</span><span class="item-desc">Cured meats, aged cheeses, olives, honeycomb, crostini</span></div><span class="item-price">$28</span></li>
+          <li><div><span class="item-name">Truffle Fries</span><span class="item-desc">Parmesan, truffle oil, chive</span></div><span class="item-price">$14</span></li>
+          <li><div><span class="item-name">Mediterranean Flatbread</span><span class="item-desc">Feta, olives, sun-dried tomato, arugula</span></div><span class="item-price">$16</span></li>
+          <li><div><span class="item-name">Grilled Halloumi</span><span class="item-desc">Za'atar, lemon, warm flatbread</span></div><span class="item-price">$13</span></li>
+          <li><div><span class="item-name">Chocolate Molten Cake</span><span class="item-desc">Vanilla bean ice cream, berries</span></div><span class="item-price">$11</span></li>
+        </ul>
+      </div>
+
+      <!-- DRINKS -->
+      <div class="menu-panel sports-only" data-panel="drinks">
+        <h2>Signature Cocktails</h2>
+        <ul class="menu-list">
+          <li><div><span class="item-name">The Excavate</span><span class="item-desc">Bourbon, smoked maple, orange bitters, cherry</span></div><span class="item-price">$15</span></li>
+          <li><div><span class="item-name">Smoke &amp; Mirror</span><span class="item-desc">Mezcal, pineapple, lime, chili salt rim</span></div><span class="item-price">$15</span></li>
+          <li><div><span class="item-name">Midnight Espresso</span><span class="item-desc">Vodka, cold-brew, vanilla, crema</span></div><span class="item-price">$14</span></li>
+          <li><div><span class="item-name">Lounge Old Fashioned</span><span class="item-desc">Rye, demerara, angostura, orange peel</span></div><span class="item-price">$16</span></li>
+          <li><div><span class="item-name">Gold Dust</span><span class="item-desc">Champagne, passionfruit, orange liqueur</span></div><span class="item-price">$18</span></li>
+        </ul>
+
+        <h2 class="mt-3">Beer</h2>
+        <ul class="menu-list">
+          <li><div><span class="item-name">Domestic Draft</span><span class="item-desc">Bud Light · Coors · Miller Lite · Yuengling</span></div><span class="item-price">$6</span></li>
+          <li><div><span class="item-name">Imports &amp; Craft</span><span class="item-desc">Rotating · ask your server</span></div><span class="item-price">$8</span></li>
+          <li><div><span class="item-name">Bucket of 6 (Domestic)</span><span class="item-desc">Save $4</span></div><span class="item-price">$32</span></li>
+        </ul>
+
+        <h2 class="mt-3">Wine &amp; Spirits</h2>
+        <ul class="menu-list">
+          <li><div><span class="item-name">House Wine</span><span class="item-desc">Red · White · Rosé by the glass</span></div><span class="item-price">$9</span></li>
+          <li><div><span class="item-name">Premium Spirits</span><span class="item-desc">Full bar · ask for the bottle list</span></div><span class="item-price">$12+</span></li>
+          <li><div><span class="item-name">Bottle Service</span><span class="item-desc">Starting at · includes mixers &amp; VIP service</span></div><span class="item-price">$180</span></li>
+        </ul>
+      </div>
+
+      <!-- HOOKAH — always visible in lounge mode -->
+      <div class="menu-panel active lounge-always-show" data-panel="hookah">
+
+        <!-- Excavate Signature Blends -->
+        <div class="hk-section">
+          <h2 class="hk-heading">Excavate Signature Blends</h2>
+          <div class="hk-list">
+            <div class="hk-item"><span class="hk-name">Excavate Reserve</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Midnight Smoke</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Dark Matter</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Smoke &amp; Mirrors</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Excavate Nights</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Desert Storm</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">The Deep Dig</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Underground</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Night Shift</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Black Diamond</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+          </div>
+        </div>
+
+        <!-- Premium Flavors -->
+        <div class="hk-section">
+          <h2 class="hk-heading">Premium Flavors</h2>
+          <div class="hk-list">
+            <div class="hk-item"><span class="hk-name">Ambrosia</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Berry</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Blue Mist</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Blueberry</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Blueberry Mint</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Chocolate</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Citrus Mint</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Coconut</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Code69</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Double Apple</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Dragon Fruit</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Elaichi</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Grape</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Guava</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Gum</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Gum Mint</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Kesar Paan</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Kiwi</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Lady Killer</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Lemon</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Lemon Mint</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Love 66</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Lychee</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Magic Love</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Mango</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Miami Nights</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Mint</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Orange</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Orange Mint</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Paan Masala</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Paan Ras</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Peach</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Pineapple</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Rose</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Sex on the Beach</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Skyfall</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Strawberry</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Strawberry Margarita</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Vanilla</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Watermelon</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Watermelon Mint</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">White Gummy Bear</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+          </div>
+        </div>
+
+        <!-- Brands -->
+        <div class="hk-section">
+          <h2 class="hk-heading">Brands</h2>
+          <div class="hk-list">
+            <div class="hk-item"><span class="hk-name">Al-Fakher</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Adalya</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Afzal</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Fumari</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+            <div class="hk-item"><span class="hk-name">Star Buzz</span><span class="hk-dots"></span><span class="hk-price">$29.99</span></div>
+          </div>
+        </div>
+
+        <!-- Policy -->
+        <div class="hk-policy">
+          <h4>Hookah Policy</h4>
+          <p>Max 2 Persons per Hookah</p>
+          <p>Additional Person charge — $6.99</p>
+          <p class="hk-note">Some items may contain allergens. Please notify your server of any dietary restrictions before ordering.</p>
+        </div>
+
+      </div>
+
+      <!-- COMBOS -->
+      <div class="menu-panel sports-only" data-panel="combos">
+        <div class="grid-3">
+          <div class="combo-card">
+            <span class="pill">Most Popular</span>
+            <h3>The Double Header</h3>
+            <ul>
+              <li>20 wings (pick 2 flavors)</li>
+              <li>Bucket of 6 domestic beers</li>
+              <li>Premium hookah, 1 flavor</li>
+            </ul>
+            <span class="price-big">$59</span>
+          </div>
+          <div class="combo-card">
+            <span class="pill">Date Night</span>
+            <h3>Smoke &amp; Scores</h3>
+            <ul>
+              <li>2 signature cocktails</li>
+              <li>Shareable plate (pick 1)</li>
+              <li>Shared hookah, 2 flavors</li>
+            </ul>
+            <span class="price-big">$49</span>
+          </div>
+          <div class="combo-card">
+            <span class="pill">VIP</span>
+            <h3>The Excavate Reserve</h3>
+            <ul>
+              <li>VIP couch (up to 6)</li>
+              <li>Bottle of premium spirit</li>
+              <li>2 signature hookahs</li>
+              <li>Dedicated server</li>
+            </ul>
+            <span class="price-big">$299</span>
+          </div>
+          <div class="combo-card">
+            <span class="pill">Squad</span>
+            <h3>The Tailgate</h3>
+            <ul>
+              <li>40 wings (4 flavors)</li>
+              <li>2 buckets of 6 beers</li>
+              <li>2 hookahs</li>
+              <li>Reserved booth</li>
+            </ul>
+            <span class="price-big">$129</span>
+          </div>
+          <div class="combo-card">
+            <span class="pill">Late Night</span>
+            <h3>After-Hours</h3>
+            <ul>
+              <li>Charcuterie board</li>
+              <li>Bottle of champagne</li>
+              <li>Signature house hookah</li>
+            </ul>
+            <span class="price-big">$179</span>
+          </div>
+          <div class="combo-card">
+            <span class="pill">Bigger Party</span>
+            <h3>The Main Event</h3>
+            <ul>
+              <li>Private VIP zone (up to 12)</li>
+              <li>2 bottles premium spirit</li>
+              <li>4 signature hookahs</li>
+              <li>Dedicated attendant</li>
+            </ul>
+            <span class="price-big">$599</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section text-center">
+    <div class="container">
+      <h2>Reserve Before You Arrive.</h2>
+      <p class="muted" style="max-width:520px; margin:0 auto 2rem;">Guarantee your booth, your flavor, and your screen.</p>
+      <a href="reserve.html" class="btn btn-solid btn-xl">Reserve a Table</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div><img src="assets/logo.png" alt="Excavate" style="height:60px; margin-bottom:1rem;" /><p class="muted" style="max-width:320px;">Excavate Sports Bar &amp; Hookah Lounge — where live sports, premium hookah, and nightlife come together.</p></div>
+        <div><h4>Visit</h4><ul><li>11910 Coit Rd</li><li>Frisco, TX 75035</li><li>(813) 922-8283</li></ul></div>
+        <div><h4>Hours</h4><ul><li>Mon–Thu · 4 PM – 1 AM</li><li>Fri–Sat · 12 PM – 2 AM</li><li>Sun · 11 AM – 12 AM</li></ul></div>
+        <div><h4>Explore</h4><ul><li><a href="menu.html">Menu</a></li><li><a href="events.html">Events</a></li><li><a href="reserve.html">Reservations</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="legal"><span>© <span id="year"></span> Excavate Sports Bar &amp; Hookah Lounge.</span><div class="socials"><a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">X</a></div></div>
+    </div>
+  </footer>
+
+  <div class="mode-flash" id="modeFlash"></div>
+  <script src="app.js"></script>
+</body>
+</html>

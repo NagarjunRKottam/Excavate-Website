@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excavate — Hookah Lounge</title>
+  <meta name="description" content="Where the smoke meets the night. Excavate Hookah Lounge — premium hookah, craft cocktails, and an atmosphere unlike any other." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body data-mode="lounge">
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Nav drawer (outside nav to avoid stacking context issues) -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reserve.html">Reserve</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/logo.png" alt="Excavate" />
+      </a>
+      <div class="nav-right">
+      <div class="nav-mode-toggle" role="tablist">
+        <button data-mode-btn="sports" type="button">Sports</button>
+        <button data-mode-btn="lounge" type="button">Lounge</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero-lounge">
+    <div class="hero-lounge-inner">
+      <p class="hero-lounge-sub">Where The Smoke Meets The Night</p>
+      <div class="cta-row">
+        <a href="reserve.html" class="btn btn-solid btn-xl">Reserve Now</a>
+        <a href="menu.html" class="btn btn-xl">View Menu</a>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll</div>
+  </header>
+
+  <!-- EXPERIENCE PILLARS -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-3 reveal">
+        <span class="eyebrow">The Experience</span>
+        <h2>The Excavate Experience</h2>
+        <p class="muted" style="max-width:560px; margin:0 auto;">Three elements. One unforgettable night.</p>
+      </div>
+      <div class="pillars reveal">
+        <div class="pillar-card">
+          <div class="pillar-icon">◈</div>
+          <h3>Premium Hookah</h3>
+          <p>Over 40 hand-crafted flavors, premium coals, and expert preparation — every session, perfected.</p>
+        </div>
+        <div class="pillar-card pillar-card--center">
+          <div class="pillar-icon">◈</div>
+          <h3>The Atmosphere</h3>
+          <p>Deep bass, dim lights, and smoke drifting through the air. A setting designed for the night.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">◈</div>
+          <h3>Food & Drinks</h3>
+          <p>Craft cocktails, premium spirits, and a menu built to complement your hookah experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTIONS -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="text-center mb-3 reveal">
+        <span class="eyebrow">Our Offerings</span>
+        <h2>Our Collections</h2>
+      </div>
+      <div class="collections reveal">
+        <a href="menu.html" class="collection-card">
+          <div class="collection-img"><div class="placeholder">Premium Hookah</div></div>
+          <div class="collection-body">
+            <h3>Premium Hookah</h3>
+            <p>40+ flavors. Single, double, and signature blends.</p>
+            <span class="collection-link">Explore →</span>
+          </div>
+        </a>
+        <a href="menu.html" class="collection-card">
+          <div class="collection-img"><div class="placeholder">Cocktails</div></div>
+          <div class="collection-body">
+            <h3>Signature Cocktails</h3>
+            <p>Handcrafted drinks designed to complement every session.</p>
+            <span class="collection-link">Explore →</span>
+          </div>
+        </a>
+        <a href="menu.html" class="collection-card">
+          <div class="collection-img"><div class="placeholder">Food</div></div>
+          <div class="collection-body">
+            <h3>Kitchen Menu</h3>
+            <p>Shareable bites, starters, and late-night plates.</p>
+            <span class="collection-link">Explore →</span>
+          </div>
+        </a>
+        <a href="reserve.html" class="collection-card">
+          <div class="collection-img"><div class="placeholder">VIP</div></div>
+          <div class="collection-body">
+            <h3>VIP Experience</h3>
+            <p>Private booths, bottle service, and dedicated hookah hosts.</p>
+            <span class="collection-link">Book Now →</span>
+          </div>
+        </a>
+      </div>
+      <div class="text-center mt-3">
+        <a href="menu.html" class="btn">View Full Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-3 reveal">
+        <span class="eyebrow">What's On</span>
+        <h2>Exclusive Events</h2>
+      </div>
+      <div class="grid-3 reveal">
+        <div class="event-card">
+          <span class="event-night">Every Friday</span>
+          <h3>Ladies Night</h3>
+          <p>Complimentary hookah for the first hour. Curated cocktail menu. Your night, your rules.</p>
+          <span class="event-detail">Starts 9 PM</span>
+        </div>
+        <div class="event-card event-card--featured">
+          <span class="event-night">Mon – Thu</span>
+          <h3>Happy Hour</h3>
+          <p>Half off select hookahs and cocktails. The perfect weeknight escape.</p>
+          <span class="event-detail">4 PM – 7 PM</span>
+        </div>
+        <div class="event-card">
+          <span class="event-night">Every Weekend</span>
+          <h3>Weekend Vibes</h3>
+          <p>Live DJ sets, elevated cocktail menu, and the city's best hookah experience.</p>
+          <span class="event-detail">Fri & Sat from 10 PM</span>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <a href="events.html" class="btn">All Events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="text-center mb-3 reveal">
+        <span class="eyebrow">The Scene</span>
+        <h2>Gallery of Moments</h2>
+      </div>
+    </div>
+    <div class="gallery-full reveal">
+      <div class="gtile"><div class="placeholder">Hookah</div></div>
+      <div class="gtile gtile-tall"><div class="placeholder">Lounge</div></div>
+      <div class="gtile"><div class="placeholder">Bar</div></div>
+      <div class="gtile"><div class="placeholder">VIP</div></div>
+      <div class="gtile gtile-wide"><div class="placeholder">Atmosphere</div></div>
+      <div class="gtile"><div class="placeholder">Smoke</div></div>
+      <div class="gtile"><div class="placeholder">Cocktails</div></div>
+      <div class="gtile"><div class="placeholder">Night</div></div>
+    </div>
+    <div class="text-center" style="padding: 2rem 0 3rem;">
+      <a href="gallery.html" class="btn">View Full Gallery</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-3 reveal">
+        <span class="eyebrow">Reviews</span>
+        <h2>What Our Guests Say</h2>
+      </div>
+      <div class="grid-3 reveal">
+        <div class="testimonial-card">
+          <div class="t-stars">★★★★★</div>
+          <p>"Best hookah lounge in the city. The atmosphere is unmatched — dim lights, great music, and the staff knows their craft."</p>
+          <span class="t-name">— Alex M.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="t-stars">★★★★★</div>
+          <p>"Came for a birthday and they made it unforgettable. VIP booth, custom hookah blends, and cocktails that hit different."</p>
+          <span class="t-name">— Priya K.</span>
+        </div>
+        <div class="testimonial-card">
+          <div class="t-stars">★★★★★</div>
+          <p>"This is our go-to spot every weekend. The vibe is always right, the hookah is always fresh, and the crew is always welcoming."</p>
+          <span class="t-name">— Jordan T.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section text-center" style="background: var(--surface);">
+    <div class="container">
+      <h2>Ready for Your Night?</h2>
+      <p class="muted" style="max-width:520px; margin: 0 auto 2rem;">Reserve your table, booth, or VIP section. We'll have the coals hot and your flavors ready.</p>
+      <div class="cta-row">
+        <a href="reserve.html" class="btn btn-solid btn-xl">Reserve Now</a>
+        <a href="contact.html" class="btn btn-xl">Find Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <img src="assets/logo.png" alt="Excavate" style="height:60px; margin-bottom:1rem;" />
+          <p class="muted" style="max-width:320px;">Excavate Hookah Lounge — premium hookah, craft cocktails, and a nightlife experience built for those who seek more.</p>
+        </div>
+        <div>
+          <h4>Visit</h4>
+          <ul>
+            <li>11910 Coit Rd</li>
+            <li>Frisco, TX 75035</li>
+            <li>(813) 922-8283</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Hours</h4>
+          <ul>
+            <li>Mon–Thu · 4 PM – 1 AM</li>
+            <li>Fri–Sat · 12 PM – 2 AM</li>
+            <li>Sun · 11 AM – 12 AM</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="reserve.html">Reservations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <span>© <span id="year"></span> Excavate Hookah Lounge. All rights reserved.</span>
+        <div class="socials" aria-label="Social media">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TT</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mode-flash" id="modeFlash"></div>
+  <script src="app.js"></script>
+</body>
+</html>

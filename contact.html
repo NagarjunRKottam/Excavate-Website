@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Excavate</title>
+  <meta name="description" content="Hours, location, phone, and socials for Excavate Sports Bar & Hookah Lounge." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body data-mode="lounge">
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Nav drawer (outside nav to avoid stacking context issues) -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reserve.html">Reserve</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Excavate" /></a>
+      <div class="nav-right">
+      <div class="nav-mode-toggle" role="tablist">
+        <button data-mode-btn="sports" type="button">Sports</button>
+        <button data-mode-btn="lounge" type="button">Lounge</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="info-grid mb-3">
+        <div class="info-block">
+          <div class="label">Address</div>
+          <div class="value">11910 Coit Rd<br>Frisco, TX 75035</div>
+        </div>
+        <div class="info-block">
+          <div class="label">Phone</div>
+          <div class="value"><a href="tel:+18139228283">(813) 922-8283</a></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Reservations</div>
+          <div class="value"><a href="mailto:reservations@excavate.com">reservations@excavate.com</a></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Private Events</div>
+          <div class="value"><a href="mailto:events@excavate.com">events@excavate.com</a></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h2>Hours</h2>
+          <ul class="menu-list">
+            <li><span class="item-name">Monday – Thursday</span><span class="item-price">4 PM – 1 AM</span></li>
+            <li><span class="item-name">Friday</span><span class="item-price">12 PM – 2 AM</span></li>
+            <li><span class="item-name">Saturday</span><span class="item-price">12 PM – 2 AM</span></li>
+            <li><span class="item-name">Sunday</span><span class="item-price">11 AM – 12 AM</span></li>
+          </ul>
+          <p class="muted" style="font-size:0.85rem;">Kitchen closes 1 hour before close. Hookah &amp; bar run full service until close.</p>
+
+          <h2 class="mt-3">Social</h2>
+          <div class="cta-row" style="justify-content:flex-start;">
+            <a href="#" class="btn">Instagram</a>
+            <a href="#" class="btn">TikTok</a>
+            <a href="#" class="btn">Facebook</a>
+          </div>
+        </div>
+        <div>
+          <h2>Location</h2>
+          <iframe
+            src="https://maps.google.com/maps?q=EXCAVATE+SPORTS+BAR+%26+HOOKAH+LOUNGE,+11910+Coit+Rd,+Frisco,+TX+75035&z=17&output=embed"
+            class="map-embed" width="100%" height="400"
+            style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Excavate Sports Bar & Hookah Lounge location"></iframe>
+          <p class="muted mt-2" style="font-size:0.85rem;">Free street parking after 6 PM. Lot on [cross street].</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section text-center">
+    <div class="container">
+      <h2>See You Tonight.</h2>
+      <p class="muted" style="max-width:520px; margin:0 auto 2rem;">Reserve before you head over — or just walk in.</p>
+      <a href="reserve.html" class="btn btn-solid btn-xl">Reserve a Table</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div><img src="assets/logo.png" alt="Excavate" style="height:60px; margin-bottom:1rem;" /><p class="muted" style="max-width:320px;">Excavate Sports Bar &amp; Hookah Lounge — where live sports, premium hookah, and nightlife come together.</p></div>
+        <div><h4>Visit</h4><ul><li>11910 Coit Rd</li><li>Frisco, TX 75035</li><li>(813) 922-8283</li></ul></div>
+        <div><h4>Hours</h4><ul><li>Mon–Thu · 4 PM – 1 AM</li><li>Fri–Sat · 12 PM – 2 AM</li><li>Sun · 11 AM – 12 AM</li></ul></div>
+        <div><h4>Explore</h4><ul><li><a href="menu.html">Menu</a></li><li><a href="events.html">Events</a></li><li><a href="reserve.html">Reservations</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="legal"><span>© <span id="year"></span> Excavate Sports Bar &amp; Hookah Lounge.</span><div class="socials"><a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">X</a></div></div>
+    </div>
+  </footer>
+
+  <div class="mode-flash" id="modeFlash"></div>
+  <script src="app.js"></script>
+</body>
+</html>

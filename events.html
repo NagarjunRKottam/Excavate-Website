@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events — Excavate</title>
+  <meta name="description" content="Live games, watch parties, DJ nights and special events at Excavate." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body data-mode="lounge">
+
+  <!-- Nav overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Nav drawer (outside nav to avoid stacking context issues) -->
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reserve.html">Reserve</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Excavate" /></a>
+      <div class="nav-right">
+      <div class="nav-mode-toggle" role="tablist">
+        <button data-mode-btn="sports" type="button">Sports</button>
+        <button data-mode-btn="lounge" type="button">Lounge</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="menu-tabs">
+        <button class="menu-tab active" data-tab="games">Live Games</button>
+        <button class="menu-tab" data-tab="parties">Watch Parties</button>
+        <button class="menu-tab" data-tab="nights">DJ Nights</button>
+      </div>
+
+      <div class="menu-panel active" data-panel="games">
+        <div class="grid-3">
+          <div class="match-card"><span class="live">Live Now</span><span class="league">NFL · Sunday 1 PM</span><div class="teams"><span>Home</span><span class="vs">vs</span><span>Away</span></div><span class="time">Main wall · All 20 screens</span></div>
+          <div class="match-card"><span class="league">NBA · Mon 7:30 PM</span><div class="teams"><span>Home</span><span class="vs">vs</span><span>Away</span></div><span class="time">East wall</span></div>
+          <div class="match-card"><span class="league">Soccer · Tue 2:30 PM</span><div class="teams"><span>Club A</span><span class="vs">vs</span><span>Club B</span></div><span class="time">Booths 4–6</span></div>
+          <div class="match-card"><span class="league">NHL · Wed 8 PM</span><div class="teams"><span>Home</span><span class="vs">vs</span><span>Away</span></div><span class="time">Main wall</span></div>
+          <div class="match-card"><span class="league">MLB · Thu 7 PM</span><div class="teams"><span>Home</span><span class="vs">vs</span><span>Away</span></div><span class="time">All screens</span></div>
+          <div class="match-card"><span class="league">UFC · Sat 10 PM</span><div class="teams"><span>Main Card</span><span class="vs">·</span><span>PPV</span></div><span class="time">Reserve VIP</span></div>
+        </div>
+      </div>
+
+      <div class="menu-panel" data-panel="parties">
+        <div class="grid-2">
+          <div class="card">
+            <h3>Sunday Funday Watch Party</h3>
+            <p class="muted">Every Sunday · 11 AM to close · All NFL games on every screen · Game-Day Menu specials · Bottomless mimosa brunch until 2 PM.</p>
+          </div>
+          <div class="card">
+            <h3>Monday Night Football</h3>
+            <p class="muted">Every Monday · 7 PM · Main wall takeover · Wing specials · Bucket of 6 for $25.</p>
+          </div>
+          <div class="card">
+            <h3>Fight Night (UFC PPV)</h3>
+            <p class="muted">Select Saturdays · $15 cover or FREE with VIP reservation · Fight-night combo drops hit the menu.</p>
+          </div>
+          <div class="card">
+            <h3>Championship Viewing Parties</h3>
+            <p class="muted">Super Bowl, NBA Finals, World Series, World Cup · Private events · Book your crew.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-panel" data-panel="nights">
+        <div class="grid-2">
+          <div class="card">
+            <h3>Thursday · R&amp;B &amp; Afrobeats</h3>
+            <p class="muted">10 PM – 2 AM · Live DJ · Lounge takes over after halftime ends.</p>
+          </div>
+          <div class="card">
+            <h3>Friday · Deep House &amp; Amapiano</h3>
+            <p class="muted">11 PM – 2 AM · Rotating residents · No cover before 10 PM.</p>
+          </div>
+          <div class="card">
+            <h3>Saturday · Hip-Hop &amp; Throwbacks</h3>
+            <p class="muted">11 PM – 2 AM · Guest DJs · Bottle specials till midnight.</p>
+          </div>
+          <div class="card">
+            <h3>Sunday · Slow Burn</h3>
+            <p class="muted">9 PM – close · Ambient / chill playlist · Extended hookah menu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section text-center">
+    <div class="container">
+      <h2>Hosting Something Bigger?</h2>
+      <p class="muted" style="max-width:520px; margin:0 auto 2rem;">Birthdays, viewing parties, corporate nights. Take over a zone — or the entire lounge.</p>
+      <a href="contact.html" class="btn btn-solid btn-xl">Private Events</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div><img src="assets/logo.png" alt="Excavate" style="height:60px; margin-bottom:1rem;" /><p class="muted" style="max-width:320px;">Excavate Sports Bar &amp; Hookah Lounge — where live sports, premium hookah, and nightlife come together.</p></div>
+        <div><h4>Visit</h4><ul><li>11910 Coit Rd</li><li>Frisco, TX 75035</li><li>(813) 922-8283</li></ul></div>
+        <div><h4>Hours</h4><ul><li>Mon–Thu · 4 PM – 1 AM</li><li>Fri–Sat · 12 PM – 2 AM</li><li>Sun · 11 AM – 12 AM</li></ul></div>
+        <div><h4>Explore</h4><ul><li><a href="menu.html">Menu</a></li><li><a href="events.html">Events</a></li><li><a href="reserve.html">Reservations</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      </div>
+      <div class="legal"><span>© <span id="year"></span> Excavate Sports Bar &amp; Hookah Lounge.</span><div class="socials"><a href="#">IG</a><a href="#">FB</a><a href="#">TT</a><a href="#">X</a></div></div>
+    </div>
+  </footer>
+
+  <div class="mode-flash" id="modeFlash"></div>
+  <script src="app.js"></script>
+</body>
+</html>
