@@ -1064,12 +1064,16 @@ body[data-mode="sports"] .lounge-only { display: none; }
 
 /* ---------- Collections ---------- */
 .collections {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.4rem;
 }
-@media (max-width: 960px) { .collections { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 540px) { .collections { grid-template-columns: 1fr; } }
+.collections .collection-card {
+  flex: 0 1 300px;
+  max-width: 340px;
+}
+@media (max-width: 540px) { .collections .collection-card { flex: 1 1 100%; max-width: 100%; } }
 
 .collection-card {
   display: flex; flex-direction: column;
@@ -1087,9 +1091,17 @@ body[data-mode="sports"] .lounge-only { display: none; }
   color: var(--text);
 }
 .collection-img {
-  height: 190px;
+  height: 200px;
   overflow: hidden;
+  position: relative;
 }
+.collection-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 500ms var(--ease);
+}
+.collection-card:hover .collection-img img { transform: scale(1.07); }
 .collection-img .placeholder {
   width: 100%; height: 100%;
   background: linear-gradient(135deg, rgba(var(--glow), 0.28) 0%, rgba(0,0,0,0.75) 100%);
@@ -1100,8 +1112,9 @@ body[data-mode="sports"] .lounge-only { display: none; }
 }
 .collection-card:hover .collection-img .placeholder { transform: scale(1.08); }
 .collection-body {
-  padding: 1.4rem; flex: 1;
+  padding: 2.4rem; flex: 1;
   display: flex; flex-direction: column;
+  text-align: center;
 }
 .collection-body h3 { margin-bottom: 0.3rem; font-size: 1.05rem; }
 .collection-body p { flex: 1; font-size: 0.88rem; }
