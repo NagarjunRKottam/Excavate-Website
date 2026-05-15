@@ -1202,3 +1202,89 @@ body[data-mode="sports"] .lounge-only { display: none; }
   letter-spacing: 0.24em; color: var(--primary);
   text-transform: uppercase;
 }
+
+/* ---------- Soft-launch banner modal ---------- */
+.launch-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(3rem, 8vh, 6rem);
+  background: transparent;
+  pointer-events: none;
+  opacity: 0;
+  animation: launchFadeIn 500ms 150ms var(--ease) forwards;
+}
+.launch-modal.hidden {
+  display: none;
+}
+@keyframes launchFadeIn {
+  to { opacity: 1; }
+}
+.launch-modal__inner {
+  position: relative;
+  width: min(620px, 92vw);
+  pointer-events: all;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(var(--glow), 0.2);
+  transform: translateY(12px);
+  animation: launchSlideUp 500ms 150ms var(--ease) forwards;
+}
+@keyframes launchSlideUp {
+  to { transform: translateY(0); }
+}
+.launch-modal__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.launch-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 200ms var(--ease), transform 200ms var(--ease);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+.launch-modal__close:hover {
+  background: var(--primary);
+  transform: scale(1.1);
+}
+.launch-modal__footer {
+  background: var(--surface);
+  padding: 0.65rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(var(--glow), 0.15);
+}
+.launch-modal__footer p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.launch-modal__footer a {
+  color: var(--primary);
+  font-weight: 600;
+}
+.launch-modal__footer a:hover {
+  color: var(--primary-hot);
+}

@@ -92,6 +92,31 @@
     $$('.reveal').forEach(el => el.classList.add('in'));
   }
 
+  /* ---------- Soft-launch banner modal ---------- */
+  (function () {
+    const modal = document.getElementById('launchModal');
+    const closeBtn = document.getElementById('launchModalClose');
+    if (!modal) return;
+
+    const STORAGE_KEY = 'excavate-launch-seen';
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (_) {}
+    }
+
+    // Only show once per session
+    try {
+      if (sessionStorage.getItem(STORAGE_KEY)) {
+        modal.classList.add('hidden');
+        return;
+      }
+    } catch (_) {}
+
+    // Close on button click
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  })();
+
   /* ---------- Reservation form ---------- */
   const form = $('#reserveForm');
   const ok   = $('#reserveOk');
