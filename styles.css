@@ -1301,3 +1301,46 @@ body[data-mode="sports"] .lounge-only { display: none; }
 .launch-modal__footer a:hover {
   color: var(--primary-hot);
 }
+
+/* ---------- Floating social bar ---------- */
+.float-socials {
+  position: fixed;
+  right: 16px;
+  bottom: 8rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.float-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  border-radius: 10px;
+  border: 1px solid rgba(var(--glow), 0.2);
+  transition: background 200ms var(--ease), color 200ms var(--ease), transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.float-social-btn svg {
+  width: 18px;
+  height: 18px;
+}
+.float-social-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(var(--glow), 0.45);
+}
+.float-social-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .float-socials { bottom: 5rem; right: 12px; }
+  .float-social-btn { width: 38px; height: 38px; }
+  .float-social-btn svg { width: 15px; height: 15px; }
+}
