@@ -31,15 +31,44 @@
     try { sessionStorage.setItem('excavate-mode', mode); } catch (_) {}
   }
 
-  // Sports disabled — only lounge button is active
+  // Sports and lounge buttons both active
   $$('[data-mode-btn]').forEach(btn => {
-    if (btn.dataset.modeBtn === 'lounge') {
-      btn.addEventListener('click', () => setMode('lounge'));
-    }
+    btn.addEventListener('click', () => setMode(btn.dataset.modeBtn));
   });
 
-  // Always default to lounge
-  setMode('lounge', { animate: false });
+  /* ---------- Splash screen (one-time experience chooser) ---------- */
+  (function () {
+    const splash = document.getElementById('splash');
+    if (!splash) return;
+
+    const hasSeen = (() => { try { return localStorage.getItem('excavate-experience-seen'); } catch (_) { return null; } })();
+
+    if (hasSeen) {
+      // Already chose — hide immediately and restore last mode
+      splash.style.display = 'none';
+      return; // setMode runs below via savedMode
+    }
+
+    // First visit — block scroll, wait for choice
+    document.body.style.overflow = 'hidden';
+
+    function chooseSplash(mode) {
+      setMode(mode, { animate: false });
+      splash.classList.add('hidden');
+      setTimeout(() => { splash.style.display = 'none'; }, 750);
+      document.body.style.overflow = '';
+      try { localStorage.setItem('excavate-experience-seen', '1'); } catch (_) {}
+    }
+
+    const btnSports = document.getElementById('splashSports');
+    const btnLounge = document.getElementById('splashLounge');
+    if (btnSports) btnSports.addEventListener('click', () => chooseSplash('sports'));
+    if (btnLounge) btnLounge.addEventListener('click', () => chooseSplash('lounge'));
+  })();
+
+  // Set mode from session (runs on every page load; on first visit splash sets it before this)
+  const savedMode = (() => { try { return sessionStorage.getItem('excavate-mode'); } catch (_) { return null; } })();
+  setMode(savedMode === 'lounge' ? 'lounge' : 'sports', { animate: false });
 
   /* ---------- Mobile nav ---------- */
   const navToggle  = $('#navToggle');

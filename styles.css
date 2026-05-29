@@ -45,17 +45,17 @@ body {
   --vignette: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
 }
 
-/* ---------- Mode: Sports (bright, stadium energy) ---------- */
+/* ---------- Mode: Sports (bright, stadium energy — white & orange) ---------- */
 body[data-mode="sports"] {
-  --bg: #0a0a0a;
-  --surface: #141414;
-  --surface-2: #1f1f1f;
-  --text: #f5f1e8;
-  --text-dim: #cfc7b6;
+  --bg: #f7f5f2;
+  --surface: #ffffff;
+  --surface-2: #f0ece6;
+  --text: #111111;
+  --text-dim: #5a5959;
   --primary: var(--brand-orange-hot);
-  --primary-hot: #ff8a4d;
-  --accent: #ffd166;
-  --signal: #ff2d2d;
+  --primary-hot: var(--brand-orange-deep);
+  --accent: #ff8c42;
+  --signal: #cc1f1f;
   --glow: 255, 107, 43;
 }
 
@@ -801,13 +801,8 @@ body[data-mode="sports"] .stadium-lights { opacity: 1; }
 
 /* ---------- Mode-switch flash overlay ---------- */
 .mode-flash {
-  position: fixed; inset: 0; z-index: 999;
-  background: radial-gradient(circle at center, rgba(var(--glow), 0.8) 0%, transparent 70%);
-  opacity: 0; pointer-events: none;
-  mix-blend-mode: screen;
-  transition: opacity 600ms var(--ease);
+  display: none;
 }
-.mode-flash.flash { opacity: 1; }
 
 /* ---------- Utilities ---------- */
 .text-center { text-align: center; }
@@ -1019,11 +1014,144 @@ body[data-mode="sports"] .lounge-only { display: none; }
   text-shadow: 0 2px 20px rgba(0,0,0,0.6);
 }
 
-/* Disable Sports button */
-[data-mode-btn="sports"] {
-  opacity: 0.35;
-  pointer-events: none;
-  cursor: default;
+/* Sports mode — light theme overrides */
+
+/* Nav scrolled */
+body[data-mode="sports"] .nav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+body[data-mode="sports"] .nav-toggle span {
+  background: var(--text);
+}
+body[data-mode="sports"] .nav-mode-toggle {
+  background: rgba(0,0,0,0.06);
+  border-color: rgba(0,0,0,0.1);
+}
+body[data-mode="sports"] .nav-mode-toggle button {
+  color: #555;
+}
+body[data-mode="sports"] .nav-links {
+  background: rgba(255,255,255,0.98);
+  border-left: 1px solid rgba(0,0,0,0.08);
+  box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+}
+body[data-mode="sports"] .nav-links a {
+  color: #555;
+}
+body[data-mode="sports"] .nav-links a:hover,
+body[data-mode="sports"] .nav-links a.active {
+  color: var(--text);
+}
+
+/* Card / section borders — swap invisible white borders for subtle dark ones */
+body[data-mode="sports"] .card,
+body[data-mode="sports"] .event-card,
+body[data-mode="sports"] .collection-card,
+body[data-mode="sports"] .match-card,
+body[data-mode="sports"] .testimonial-card,
+body[data-mode="sports"] .flavor-card {
+  border-color: rgba(0,0,0,0.09);
+}
+body[data-mode="sports"] .pillars {
+  border-color: rgba(0,0,0,0.09);
+}
+body[data-mode="sports"] .pillar-card {
+  border-right-color: rgba(0,0,0,0.09);
+}
+body[data-mode="sports"] .pillar-card--center {
+  border-top-color: var(--primary);
+}
+body[data-mode="sports"] .stat-strip {
+  border-color: rgba(0,0,0,0.09);
+}
+body[data-mode="sports"] .menu-list li {
+  border-bottom-color: rgba(0,0,0,0.09);
+}
+body[data-mode="sports"] .event-detail {
+  border-top-color: rgba(0,0,0,0.09);
+}
+body[data-mode="sports"] .field input,
+body[data-mode="sports"] .field select,
+body[data-mode="sports"] .field textarea {
+  background: #fff;
+  border-color: rgba(0,0,0,0.15);
+  color: var(--text);
+}
+body[data-mode="sports"] .map-embed {
+  border-color: rgba(0,0,0,0.09);
+  background: #f0ece6;
+}
+body[data-mode="sports"] .page-header {
+  border-bottom-color: rgba(0,0,0,0.09);
+}
+body[data-mode="sports"] .hk-heading,
+body[data-mode="sports"] .brand-title {
+  border-bottom-color: rgba(0,0,0,0.12);
+}
+body[data-mode="sports"] .hk-item {
+  border-bottom-color: rgba(0,0,0,0.07);
+}
+body[data-mode="sports"] .hk-dots {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(0,0,0,0.2) 0px,
+    rgba(0,0,0,0.2) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}
+body[data-mode="sports"] .hk-policy {
+  border-top-color: rgba(0,0,0,0.09);
+}
+
+/* Nav overlay */
+body[data-mode="sports"] .nav-overlay {
+  background: rgba(0,0,0,0.35);
+}
+
+/* Btn outline on white bg */
+body[data-mode="sports"] .btn {
+  color: var(--text);
+}
+body[data-mode="sports"] .btn-solid {
+  color: #fff;
+}
+body[data-mode="sports"] .btn-solid:hover {
+  color: #fff;
+}
+body[data-mode="sports"] .btn:hover {
+  color: #fff;
+}
+
+/* Footer stays dark regardless of mode */
+body[data-mode="sports"] .footer {
+  background: var(--ink-0);
+  border-top-color: rgba(255,255,255,0.06);
+}
+body[data-mode="sports"] .footer h4,
+body[data-mode="sports"] .footer a,
+body[data-mode="sports"] .footer li,
+body[data-mode="sports"] .footer .legal {
+  color: var(--paper-dim);
+}
+body[data-mode="sports"] .footer a:hover { color: var(--paper); }
+body[data-mode="sports"] .footer .legal { border-top-color: rgba(255,255,255,0.06); }
+body[data-mode="sports"] .footer .socials a { border-color: rgba(255,255,255,0.1); }
+
+/* Float social bar on white page */
+body[data-mode="sports"] .float-social-btn {
+  background: #fff;
+  border-color: rgba(0,0,0,0.1);
+  color: #555;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Menu tab on white */
+body[data-mode="sports"] .menu-tab {
+  border-color: rgba(0,0,0,0.12);
+  color: var(--text-dim);
 }
 
 /* Inner pages — push content below fixed nav */
@@ -1343,4 +1471,139 @@ body[data-mode="sports"] .lounge-only { display: none; }
   .float-socials { bottom: 5rem; right: 12px; }
   .float-social-btn { width: 38px; height: 38px; }
   .float-social-btn svg { width: 15px; height: 15px; }
+}
+
+/* ---------- Sports Hero ---------- */
+.hero-sports {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  padding: 6rem 1rem 4rem;
+  background-image: url('assets/sportsbar.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-sports::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.62) 100%);
+  pointer-events: none;
+}
+.hero-sports-inner {
+  position: relative; z-index: 2;
+  text-align: center;
+  max-width: 900px;
+}
+.hero-sports-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  line-height: 1.1;
+}
+.hero-sports-sub {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 2.8rem;
+  font-style: italic;
+}
+
+/* ---------- Splash Screen (one-time experience chooser) ---------- */
+.splash {
+  position: fixed; inset: 0; z-index: 5000;
+  display: flex; align-items: center; justify-content: center;
+  background-image: url('assets/sportsbar.png');
+  background-size: cover; background-position: center;
+  transition: opacity 700ms var(--ease), visibility 700ms var(--ease);
+  visibility: visible;
+}
+.splash::before {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(0,0,0,0.68);
+}
+.splash.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.splash-inner {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  max-width: 720px; width: 100%;
+}
+.splash-logo {
+  width: min(200px, 55vw);
+  margin: 0 auto 1.2rem;
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5));
+}
+.splash-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 2.8rem;
+}
+.splash-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+@media (max-width: 500px) {
+  .splash-choices { grid-template-columns: 1fr; gap: 1rem; }
+}
+.splash-btn {
+  padding: 2.2rem 1.4rem;
+  border-radius: var(--radius-lg);
+  background: rgba(15,15,15,0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 380ms var(--ease);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.splash-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+}
+.splash-btn--sports:hover {
+  border-color: rgba(255,107,43,0.7);
+  background: rgba(255,107,43,0.18);
+}
+.splash-btn--lounge:hover {
+  border-color: rgba(192,132,252,0.7);
+  background: rgba(192,132,252,0.14);
+}
+.splash-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.splash-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.splash-btn--sports .splash-label { color: #ff6b2b; }
+.splash-btn--lounge .splash-label { color: #c084fc; }
+.splash-desc {
+  display: block;
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  margin-top: 0.3rem;
+  font-family: var(--font-body);
 }
