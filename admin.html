@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excavate — Events Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #ff6b2b;
+      --orange-dark: #e04a20;
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-2: #242424;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0ece6;
+      --text-dim: #888;
+      --radius: 8px;
+      --font: 'Inter', sans-serif;
+      --font-display: 'Oswald', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
+
+    /* ---- Login ---- */
+    #loginScreen {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+      z-index: 1000;
+    }
+    #loginScreen.hidden { display: none; }
+    .login-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      width: min(380px, 92vw);
+      text-align: center;
+    }
+    .login-box img { height: 70px; margin: 0 auto 1.2rem; display: block; }
+    .login-box h2 { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin: 0 0 0.3rem; }
+    .login-box p { color: var(--text-dim); font-size: 0.85rem; margin: 0 0 1.8rem; }
+    .login-box input {
+      width: 100%; padding: 0.85rem 1rem;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--font); font-size: 1rem;
+      margin-bottom: 1rem; outline: none;
+      transition: border-color 200ms;
+    }
+    .login-box input:focus { border-color: var(--orange); }
+    .login-box button {
+      width: 100%; padding: 0.9rem;
+      background: var(--orange); color: #fff;
+      border: none; border-radius: var(--radius);
+      font-family: var(--font-display); font-size: 0.9rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; transition: background 200ms;
+    }
+    .login-box button:hover { background: var(--orange-dark); }
+    .login-error { color: #ff5555; font-size: 0.82rem; margin-top: 0.8rem; display: none; }
+
+    /* ---- App shell ---- */
+    #app { display: none; }
+    #app.visible { display: block; }
+
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 1rem; }
+    .topbar-left img { height: 40px; }
+    .topbar-title { font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); }
+    .topbar-actions { display: flex; gap: 0.6rem; }
+
+    .btn { padding: 0.55rem 1.1rem; border-radius: var(--radius); font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: all 180ms; border: none; }
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-dark); }
+    .btn-ghost { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+    .btn-danger { background: transparent; color: #ff5555; border: 1px solid rgba(255,85,85,0.3); }
+    .btn-danger:hover { background: rgba(255,85,85,0.1); }
+    .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.68rem; }
+
+    .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* Mode tabs */
+    .mode-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+    .mode-tab { padding: 0.65rem 1.4rem; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; background: transparent; border: none; color: var(--text-dim); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 200ms; }
+    .mode-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* Section heading */
+    .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; margin-top: 2rem; }
+    .section-head:first-child { margin-top: 0; }
+    .section-head h3 { font-family: var(--font-display); font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin: 0; }
+
+    /* Event cards in admin */
+    .event-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .event-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+    }
+    .event-item-body { flex: 1; min-width: 0; }
+    .event-item-title { font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); margin-bottom: 0.2rem; }
+    .event-item-meta { font-size: 0.8rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .event-item-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+    .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.65rem; font-family: var(--font-display); letter-spacing: 0.15em; text-transform: uppercase; background: rgba(255,107,43,0.15); color: var(--orange); margin-left: 0.5rem; }
+    .badge-purple { background: rgba(192,132,252,0.15); color: #c084fc; }
+    .empty-state { text-align: center; padding: 2rem; color: var(--text-dim); font-size: 0.9rem; border: 1px dashed var(--border); border-radius: var(--radius); }
+
+    /* Modal / drawer */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      z-index: 500; display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity 200ms;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      width: min(540px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.8rem;
+      transform: translateY(16px); transition: transform 200ms;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+    .modal-header h2 { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin: 0; }
+    .modal-close { background: transparent; border: none; color: var(--text-dim); font-size: 1.2rem; cursor: pointer; padding: 0.2rem 0.4rem; }
+    .modal-close:hover { color: var(--text); }
+
+    /* Form */
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.4rem; font-family: var(--font-display); }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.75rem 0.9rem;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--font); font-size: 0.95rem; outline: none;
+      transition: border-color 180ms;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--orange); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-group select option { background: var(--surface-2); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .form-actions { display: flex; gap: 0.6rem; justify-content: flex-end; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+
+    /* Checkbox */
+    .form-check { display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-size: 0.88rem; color: var(--text-dim); }
+    .form-check input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--orange); cursor: pointer; }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      padding: 0.8rem 1.2rem; border-radius: var(--radius);
+      font-size: 0.85rem; color: var(--text);
+      transform: translateY(80px); opacity: 0;
+      transition: all 300ms; z-index: 9999;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .topbar-title { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="assets/logo.png" alt="Excavate" />
+    <h2>Events Admin</h2>
+    <p>Sign in to manage your events</p>
+    <input type="password" id="passwordInput" placeholder="Enter password" />
+    <button onclick="login()">Sign In</button>
+    <p class="login-error" id="loginError">Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <img src="assets/logo.png" alt="Excavate" />
+      <span class="topbar-title">Events Admin</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost btn-sm" onclick="exportData()">Export JSON</button>
+      <button class="btn btn-ghost btn-sm" onclick="importData()">Import JSON</button>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="switchTab('sports')">🏈 Sports Bar</button>
+      <button class="mode-tab" onclick="switchTab('lounge')">◈ Hookah Lounge</button>
+    </div>
+
+    <!-- SPORTS -->
+    <div id="tab-sports">
+
+      <div class="section-head">
+        <h3>Watch Parties &amp; Specials</h3>
+        <button class="btn btn-primary btn-sm" onclick="openModal('sports_parties')">+ Add Event</button>
+      </div>
+      <div class="event-list" id="list-sports_parties"></div>
+
+      <div class="section-head">
+        <h3>Live Games Schedule</h3>
+        <button class="btn btn-primary btn-sm" onclick="openModal('sports_games')">+ Add Game</button>
+      </div>
+      <div class="event-list" id="list-sports_games"></div>
+
+    </div>
+
+    <!-- LOUNGE -->
+    <div id="tab-lounge" style="display:none;">
+
+      <div class="section-head">
+        <h3>Weekly Events</h3>
+        <button class="btn btn-primary btn-sm" onclick="openModal('lounge_events')">+ Add Event</button>
+      </div>
+      <div class="event-list" id="list-lounge_events"></div>
+
+      <div class="section-head">
+        <h3>DJ Nights</h3>
+        <button class="btn btn-primary btn-sm" onclick="openModal('dj_nights')">+ Add Night</button>
+      </div>
+      <div class="event-list" id="list-dj_nights"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Add Event</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ---- Password ----
+  const PASS = 'excavate2024';
+  const STORAGE_KEY = 'excavate-events-v2';
+
+  function login() {
+    const val = document.getElementById('passwordInput').value;
+    if (val === PASS) {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('app').classList.add('visible');
+      renderAll();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+  document.getElementById('passwordInput').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
+
+  function logout() {
+    document.getElementById('loginScreen').classList.remove('hidden');
+    document.getElementById('app').classList.remove('visible');
+    document.getElementById('passwordInput').value = '';
+  }
+
+  // ---- Data ----
+  const DEFAULTS = {
+    sports_parties: [
+      { id: uid(), title: 'Sunday Funday Watch Party', desc: 'Every Sunday · 11 AM to close · All NFL games on every screen · Game-Day Menu specials · Bottomless mimosa brunch until 2 PM.', badge: 'Every Sunday' },
+      { id: uid(), title: 'Monday Night Football', desc: 'Every Monday · 7 PM · Main wall takeover · Wing specials · Bucket of 6 for $25.', badge: 'Every Monday' },
+      { id: uid(), title: 'Fight Night (UFC PPV)', desc: 'Select Saturdays · $15 cover or FREE with VIP reservation · Fight-night combo drops hit the menu.', badge: 'Select Saturdays' },
+      { id: uid(), title: 'Championship Viewing Parties', desc: 'Super Bowl, NBA Finals, World Series, World Cup · Private events · Book your crew.', badge: 'Special Events' },
+    ],
+    sports_games: [
+      { id: uid(), league: 'NFL', time: 'Sunday 1 PM', home: 'Cowboys', away: 'Eagles', screen: 'Main wall · All 20 screens', live: true },
+      { id: uid(), league: 'NBA', time: 'Mon 7:30 PM', home: 'Mavs', away: 'Lakers', screen: 'East wall', live: false },
+      { id: uid(), league: 'Soccer', time: 'Tue 2:30 PM', home: 'Club A', away: 'Club B', screen: 'Booths 4–6', live: false },
+      { id: uid(), league: 'UFC', time: 'Sat 10 PM', home: 'Main Card', away: 'PPV', screen: 'Reserve VIP', live: false },
+    ],
+    lounge_events: [
+      { id: uid(), night: 'Every Wednesday', title: 'Ladies Night', desc: 'Complimentary hookah for the first hour. Curated cocktail menu. Your night, your rules.', detail: 'Starts 9 PM', featured: false },
+      { id: uid(), night: 'Sun – Thu', title: 'Happy Hour', desc: 'Hookahs at $21.99. The perfect weeknight escape.', detail: '4 PM – 6 PM · $21.99 Hookahs', featured: true },
+      { id: uid(), night: 'Every Weekend', title: 'Weekend Vibes', desc: "Live DJ sets, elevated cocktail menu, and the city's best hookah experience.", detail: 'Fri & Sat from 10 PM', featured: false },
+    ],
+    dj_nights: [
+      { id: uid(), day: 'Thursday', title: 'R&B & Afrobeats', desc: '10 PM – 2 AM · Live DJ · Lounge takes over after halftime ends.' },
+      { id: uid(), day: 'Friday', title: 'Deep House & Amapiano', desc: '11 PM – 2 AM · Rotating residents · No cover before 10 PM.' },
+      { id: uid(), day: 'Saturday', title: 'Hip-Hop & Throwbacks', desc: '11 PM – 2 AM · Guest DJs · Bottle specials till midnight.' },
+      { id: uid(), day: 'Sunday', title: 'Slow Burn', desc: '9 PM – close · Ambient / chill playlist · Extended hookah menu.' },
+    ]
+  };
+
+  function uid() { return Math.random().toString(36).slice(2, 10); }
+
+  function loadData() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULTS));
+    } catch { return JSON.parse(JSON.stringify(DEFAULTS)); }
+  }
+
+  function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    // Also write to the events broadcast key that events pages read
+    localStorage.setItem('excavate-events', JSON.stringify(data));
+  }
+
+  // ---- Tabs ----
+  let currentTab = 'sports';
+  function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('tab-sports').style.display = tab === 'sports' ? 'block' : 'none';
+    document.getElementById('tab-lounge').style.display = tab === 'lounge' ? 'block' : 'none';
+    document.querySelectorAll('.mode-tab').forEach((t, i) => t.classList.toggle('active', i === (tab === 'sports' ? 0 : 1)));
+  }
+
+  // ---- Render ----
+  function renderAll() {
+    const data = loadData();
+    renderList('sports_parties', data.sports_parties, renderPartyItem);
+    renderList('sports_games', data.sports_games, renderGameItem);
+    renderList('lounge_events', data.lounge_events, renderLoungeItem);
+    renderList('dj_nights', data.dj_nights, renderDJItem);
+  }
+
+  function renderList(key, items, renderFn) {
+    const el = document.getElementById('list-' + key);
+    if (!items || items.length === 0) {
+      el.innerHTML = '<div class="empty-state">No items yet. Click + Add to get started.</div>';
+      return;
+    }
+    el.innerHTML = items.map(item => renderFn(key, item)).join('');
+  }
+
+  function renderPartyItem(key, item) {
+    return `<div class="event-item">
+      <div class="event-item-body">
+        <div class="event-item-title">${item.title} <span class="badge">${item.badge || ''}</span></div>
+        <div class="event-item-meta">${item.desc}</div>
+      </div>
+      <div class="event-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openModal('${key}', '${item.id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('${key}', '${item.id}')">Delete</button>
+      </div>
+    </div>`;
+  }
+
+  function renderGameItem(key, item) {
+    return `<div class="event-item">
+      <div class="event-item-body">
+        <div class="event-item-title">${item.league} — ${item.home} vs ${item.away} ${item.live ? '<span class="badge" style="background:rgba(255,45,45,0.15);color:#ff5555;">LIVE</span>' : ''}</div>
+        <div class="event-item-meta">${item.time} · ${item.screen}</div>
+      </div>
+      <div class="event-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openModal('${key}', '${item.id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('${key}', '${item.id}')">Delete</button>
+      </div>
+    </div>`;
+  }
+
+  function renderLoungeItem(key, item) {
+    return `<div class="event-item">
+      <div class="event-item-body">
+        <div class="event-item-title">${item.title} <span class="badge badge-purple">${item.night}</span>${item.featured ? ' <span class="badge">Featured</span>' : ''}</div>
+        <div class="event-item-meta">${item.detail} — ${item.desc}</div>
+      </div>
+      <div class="event-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openModal('${key}', '${item.id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('${key}', '${item.id}')">Delete</button>
+      </div>
+    </div>`;
+  }
+
+  function renderDJItem(key, item) {
+    return `<div class="event-item">
+      <div class="event-item-body">
+        <div class="event-item-title">${item.day} · ${item.title}</div>
+        <div class="event-item-meta">${item.desc}</div>
+      </div>
+      <div class="event-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openModal('${key}', '${item.id}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteItem('${key}', '${item.id}')">Delete</button>
+      </div>
+    </div>`;
+  }
+
+  // ---- Modal ----
+  let modalKey = null;
+  let modalId = null;
+
+  const FORMS = {
+    sports_parties: (item = {}) => `
+      <div class="form-group"><label>Event Title</label><input id="f-title" value="${esc(item.title||'')}" placeholder="Sunday Funday Watch Party" /></div>
+      <div class="form-group"><label>Badge / Schedule Label</label><input id="f-badge" value="${esc(item.badge||'')}" placeholder="Every Sunday" /></div>
+      <div class="form-group"><label>Description</label><textarea id="f-desc">${esc(item.desc||'')}</textarea></div>`,
+
+    sports_games: (item = {}) => `
+      <div class="form-row">
+        <div class="form-group"><label>League</label><input id="f-league" value="${esc(item.league||'')}" placeholder="NFL" /></div>
+        <div class="form-group"><label>Date / Time</label><input id="f-time" value="${esc(item.time||'')}" placeholder="Sunday 1 PM" /></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Home Team</label><input id="f-home" value="${esc(item.home||'')}" placeholder="Cowboys" /></div>
+        <div class="form-group"><label>Away Team</label><input id="f-away" value="${esc(item.away||'')}" placeholder="Eagles" /></div>
+      </div>
+      <div class="form-group"><label>Screen / Location</label><input id="f-screen" value="${esc(item.screen||'')}" placeholder="Main wall · All screens" /></div>
+      <label class="form-check"><input type="checkbox" id="f-live" ${item.live ? 'checked' : ''} /> Mark as LIVE now</label>`,
+
+    lounge_events: (item = {}) => `
+      <div class="form-row">
+        <div class="form-group"><label>Event Title</label><input id="f-title" value="${esc(item.title||'')}" placeholder="Ladies Night" /></div>
+        <div class="form-group"><label>Schedule (Night / Day)</label><input id="f-night" value="${esc(item.night||'')}" placeholder="Every Wednesday" /></div>
+      </div>
+      <div class="form-group"><label>Detail Line</label><input id="f-detail" value="${esc(item.detail||'')}" placeholder="Starts 9 PM" /></div>
+      <div class="form-group"><label>Description</label><textarea id="f-desc">${esc(item.desc||'')}</textarea></div>
+      <label class="form-check"><input type="checkbox" id="f-featured" ${item.featured ? 'checked' : ''} /> Mark as Featured (highlighted card)</label>`,
+
+    dj_nights: (item = {}) => `
+      <div class="form-row">
+        <div class="form-group"><label>Day</label>
+          <select id="f-day">
+            ${['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].map(d => `<option ${item.day===d?'selected':''}>${d}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-group"><label>Night Title / Genre</label><input id="f-title" value="${esc(item.title||'')}" placeholder="Hip-Hop &amp; Throwbacks" /></div>
+      </div>
+      <div class="form-group"><label>Description / Times</label><textarea id="f-desc">${esc(item.desc||'')}</textarea></div>`,
+  };
+
+  const TITLES = {
+    sports_parties: 'Watch Party / Special',
+    sports_games: 'Live Game',
+    lounge_events: 'Lounge Event',
+    dj_nights: 'DJ Night',
+  };
+
+  function openModal(key, id = null) {
+    modalKey = key;
+    modalId = id;
+    const data = loadData();
+    const item = id ? data[key].find(i => i.id === id) : null;
+    document.getElementById('modalTitle').textContent = (id ? 'Edit' : 'Add') + ' ' + TITLES[key];
+    document.getElementById('modalBody').innerHTML = FORMS[key](item || {}) + `
+      <div class="form-actions">
+        <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveItem()">Save</button>
+      </div>`;
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+  function closeModalOnBg(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+
+  function saveItem() {
+    const data = loadData();
+    const items = data[modalKey];
+    const gathered = gatherForm(modalKey);
+    if (!gathered) return;
+
+    if (modalId) {
+      const idx = items.findIndex(i => i.id === modalId);
+      if (idx > -1) items[idx] = { ...items[idx], ...gathered };
+    } else {
+      items.push({ id: uid(), ...gathered });
+    }
+    saveData(data);
+    closeModal();
+    renderAll();
+    toast('Saved successfully');
+  }
+
+  function gatherForm(key) {
+    const g = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+    const gc = (id) => { const el = document.getElementById(id); return el ? el.checked : false; };
+    if (key === 'sports_parties') return { title: g('f-title'), badge: g('f-badge'), desc: g('f-desc') };
+    if (key === 'sports_games') return { league: g('f-league'), time: g('f-time'), home: g('f-home'), away: g('f-away'), screen: g('f-screen'), live: gc('f-live') };
+    if (key === 'lounge_events') return { title: g('f-title'), night: g('f-night'), detail: g('f-detail'), desc: g('f-desc'), featured: gc('f-featured') };
+    if (key === 'dj_nights') return { day: g('f-day'), title: g('f-title'), desc: g('f-desc') };
+    return null;
+  }
+
+  function deleteItem(key, id) {
+    if (!confirm('Delete this item?')) return;
+    const data = loadData();
+    data[key] = data[key].filter(i => i.id !== id);
+    saveData(data);
+    renderAll();
+    toast('Deleted');
+  }
+
+  // ---- Import / Export ----
+  function exportData() {
+    const data = loadData();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'excavate-events.json';
+    a.click();
+    toast('Exported');
+  }
+
+  function importData() {
+    const input = document.createElement('input');
+    input.type = 'file'; input.accept = '.json';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const data = JSON.parse(ev.target.result);
+          saveData(data);
+          renderAll();
+          toast('Imported successfully');
+        } catch { toast('Invalid JSON file'); }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+
+  // ---- Helpers ----
+  function esc(str) { return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2500);
+  }
+</script>
+</body>
+</html>

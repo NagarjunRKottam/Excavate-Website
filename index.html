@@ -230,71 +230,71 @@
     </div>
   </section>
 
-  <!-- EVENTS — Sports -->
+  <!-- EVENTS — Sports (dynamic) -->
   <section class="section sports-only">
     <div class="container">
       <div class="text-center mb-3 reveal">
         <span class="eyebrow">What's On</span>
         <h2>Game Day Events</h2>
       </div>
-      <div class="grid-3 reveal">
-        <div class="event-card">
-          <span class="event-night">Every Sunday</span>
-          <h3>NFL Game Day</h3>
-          <p>Every game on every screen. The whole lineup, all day, all season. Reserve your table before they fill up.</p>
-          <span class="event-detail">Starts 1 PM</span>
-        </div>
-        <div class="event-card event-card--featured">
-          <span class="event-night">Daily · Sun – Thu</span>
-          <h3>Happy Hour</h3>
-          <p>Cold drafts and cocktails at game-day prices. Best deal in Frisco before the opening whistle.</p>
-          <span class="event-detail">4 PM – 6 PM · Drink Specials</span>
-        </div>
-        <div class="event-card">
-          <span class="event-night">Playoffs & Finals</span>
-          <h3>Championship Nights</h3>
-          <p>When the stakes are highest, we turn it up. Full bar, packed house, and the biggest screen in the room.</p>
-          <span class="event-detail">Doors open at 7 PM</span>
-        </div>
-      </div>
+      <div class="grid-3 reveal" id="homeEventsSports"></div>
       <div class="text-center mt-3">
         <a href="events.html" class="btn">All Events</a>
       </div>
     </div>
   </section>
 
-  <!-- EVENTS — Lounge -->
+  <!-- EVENTS — Lounge (dynamic) -->
   <section class="section lounge-only">
     <div class="container">
       <div class="text-center mb-3 reveal">
         <span class="eyebrow">What's On</span>
         <h2>Exclusive Events</h2>
       </div>
-      <div class="grid-3 reveal">
-        <div class="event-card">
-          <span class="event-night">Every Wednesday</span>
-          <h3>Ladies Night</h3>
-          <p>Complimentary hookah for the first hour. Curated cocktail menu. Your night, your rules.</p>
-          <span class="event-detail">Starts 9 PM</span>
-        </div>
-        <div class="event-card event-card--featured">
-          <span class="event-night">Sun – Thu</span>
-          <h3>Happy Hour</h3>
-          <p>Hookahs at $21.99. The perfect weeknight escape.</p>
-          <span class="event-detail">4 PM – 6 PM · $21.99 Hookahs</span>
-        </div>
-        <div class="event-card">
-          <span class="event-night">Every Weekend</span>
-          <h3>Weekend Vibes</h3>
-          <p>Live DJ sets, elevated cocktail menu, and the city's best hookah experience.</p>
-          <span class="event-detail">Fri & Sat from 10 PM</span>
-        </div>
-      </div>
+      <div class="grid-3 reveal" id="homeEventsLounge"></div>
       <div class="text-center mt-3">
         <a href="events.html" class="btn">All Events</a>
       </div>
     </div>
   </section>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = 'excavate-events';
+      const SPORTS_DEFAULTS = [
+        { night: 'Every Sunday', title: 'NFL Game Day', desc: 'Every game on every screen. The whole lineup, all day, all season.', detail: 'Starts 1 PM', featured: false },
+        { night: 'Daily · Sun – Thu', title: 'Happy Hour', desc: 'Cold drafts and cocktails at game-day prices. Best deal in Frisco.', detail: '4 PM – 6 PM · Drink Specials', featured: true },
+        { night: 'Playoffs & Finals', title: 'Championship Nights', desc: 'When the stakes are highest, we turn it up. Full bar, packed house, biggest screen.', detail: 'Doors open 7 PM', featured: false },
+      ];
+      const LOUNGE_DEFAULTS = [
+        { night: 'Every Wednesday', title: 'Ladies Night', desc: 'Complimentary hookah for the first hour. Curated cocktail menu. Your night, your rules.', detail: 'Starts 9 PM', featured: false },
+        { night: 'Sun – Thu', title: 'Happy Hour', desc: 'Hookahs at $21.99. The perfect weeknight escape.', detail: '4 PM – 6 PM · $21.99 Hookahs', featured: true },
+        { night: 'Every Weekend', title: 'Weekend Vibes', desc: "Live DJ sets, elevated cocktail menu, and the city's best hookah experience.", detail: 'Fri & Sat from 10 PM', featured: false },
+      ];
+
+      function renderCards(items, elId) {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        el.innerHTML = items.slice(0, 3).map(e => `
+          <div class="event-card ${e.featured ? 'event-card--featured' : ''}">
+            <span class="event-night">${e.night}</span>
+            <h3>${e.title}</h3>
+            <p>${e.desc}</p>
+            <span class="event-detail">${e.detail}</span>
+          </div>`).join('');
+      }
+
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        const data = raw ? JSON.parse(raw) : null;
+        renderCards(data && data.sports_parties ? data.sports_parties : SPORTS_DEFAULTS, 'homeEventsSports');
+        renderCards(data && data.lounge_events ? data.lounge_events : LOUNGE_DEFAULTS, 'homeEventsLounge');
+      } catch {
+        renderCards(SPORTS_DEFAULTS, 'homeEventsSports');
+        renderCards(LOUNGE_DEFAULTS, 'homeEventsLounge');
+      }
+    })();
+  </script>
 
   <!-- GALLERY -->
   <section class="section" style="background: var(--surface);">
