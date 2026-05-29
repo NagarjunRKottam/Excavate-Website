@@ -306,6 +306,12 @@ p { margin: 0 0 1em; color: var(--text-dim); }
 
 .btn-xl { padding: 1.3rem 2.4rem; font-size: 1rem; }
 
+.btn-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /* ---------- Dual-Mode Hero (Home) ---------- */
 .hero-dual {
   position: relative;
@@ -407,7 +413,7 @@ p { margin: 0 0 1em; color: var(--text-dim); }
 .scroll-cue {
   position: absolute; bottom: 24px; left: 50%;
   transform: translateX(-50%);
-  color: var(--text-dim); font-size: 0.7rem;
+  color: rgba(255,255,255,0.6); font-size: 0.7rem;
   letter-spacing: 0.3em; text-transform: uppercase;
   font-family: var(--font-display);
   animation: float 2.4s ease-in-out infinite;
