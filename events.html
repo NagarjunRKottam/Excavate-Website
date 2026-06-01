@@ -78,42 +78,9 @@
     body[data-mode="sports"] .lounge-only { display: none !important; }
   </style>
 
+  <script src="events-loader.js"></script>
   <script>
-    (function () {
-      const STORAGE_KEY = 'excavate-events';
-      const DEFAULTS = {
-        sports_parties: [
-          { id: '1', title: 'Sunday Funday Watch Party', desc: 'Every Sunday · 11 AM to close · All NFL games on every screen · Game-Day Menu specials · Bottomless mimosa brunch until 2 PM.', badge: 'Every Sunday' },
-          { id: '2', title: 'Monday Night Football', desc: 'Every Monday · 7 PM · Main wall takeover · Wing specials · Bucket of 6 for $25.', badge: 'Every Monday' },
-          { id: '3', title: 'Fight Night (UFC PPV)', desc: 'Select Saturdays · $15 cover or FREE with VIP reservation · Fight-night combo drops hit the menu.', badge: 'Select Saturdays' },
-          { id: '4', title: 'Championship Viewing Parties', desc: 'Super Bowl, NBA Finals, World Series, World Cup · Private events · Book your crew.', badge: 'Special Events' },
-        ],
-        sports_games: [
-          { id: '5', league: 'NFL', time: 'Sunday 1 PM', home: 'Cowboys', away: 'Eagles', screen: 'Main wall · All 20 screens', live: true },
-          { id: '6', league: 'NBA', time: 'Mon 7:30 PM', home: 'Mavs', away: 'Lakers', screen: 'East wall', live: false },
-          { id: '7', league: 'Soccer', time: 'Tue 2:30 PM', home: 'Club A', away: 'Club B', screen: 'Booths 4–6', live: false },
-          { id: '8', league: 'UFC', time: 'Sat 10 PM', home: 'Main Card', away: 'PPV', screen: 'Reserve VIP', live: false },
-        ],
-        lounge_events: [
-          { id: '9', night: 'Every Wednesday', title: 'Ladies Night', desc: 'Complimentary hookah for the first hour. Curated cocktail menu. Your night, your rules.', detail: 'Starts 9 PM', featured: false },
-          { id: '10', night: 'Sun – Thu', title: 'Happy Hour', desc: 'Hookahs at $21.99. The perfect weeknight escape.', detail: '4 PM – 6 PM · $21.99 Hookahs', featured: true },
-          { id: '11', night: 'Every Weekend', title: 'Weekend Vibes', desc: "Live DJ sets, elevated cocktail menu, and the city's best hookah experience.", detail: 'Fri & Sat from 10 PM', featured: false },
-        ],
-        dj_nights: [
-          { id: '12', day: 'Thursday', title: 'R&B & Afrobeats', desc: '10 PM – 2 AM · Live DJ · Lounge takes over after halftime ends.' },
-          { id: '13', day: 'Friday', title: 'Deep House & Amapiano', desc: '11 PM – 2 AM · Rotating residents · No cover before 10 PM.' },
-          { id: '14', day: 'Saturday', title: 'Hip-Hop & Throwbacks', desc: '11 PM – 2 AM · Guest DJs · Bottle specials till midnight.' },
-          { id: '15', day: 'Sunday', title: 'Slow Burn', desc: '9 PM – close · Ambient / chill playlist · Extended hookah menu.' },
-        ]
-      };
-
-      function loadData() {
-        try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : DEFAULTS; } catch { return DEFAULTS; }
-      }
-
-      const d = loadData();
-
-      // Games
+    ExcavateEvents.loadEvents().then(function (d) {
       document.getElementById('gamesGrid').innerHTML = (d.sports_games || []).map(g => `
         <div class="match-card">
           ${g.live ? '<span class="live">Live Now</span>' : ''}
@@ -122,14 +89,12 @@
           <span class="time">${g.screen}</span>
         </div>`).join('') || '<p class="muted">No games scheduled.</p>';
 
-      // Watch parties
       document.getElementById('partiesGrid').innerHTML = (d.sports_parties || []).map(p => `
         <div class="card">
           <h3>${p.title}</h3>
           <p class="muted">${p.desc}</p>
         </div>`).join('') || '<p class="muted">No events yet.</p>';
 
-      // Lounge events
       document.getElementById('loungeGrid').innerHTML = (d.lounge_events || []).map(e => `
         <div class="event-card ${e.featured ? 'event-card--featured' : ''}">
           <span class="event-night">${e.night}</span>
@@ -138,13 +103,12 @@
           <span class="event-detail">${e.detail}</span>
         </div>`).join('') || '<p class="muted">No events yet.</p>';
 
-      // DJ nights
       document.getElementById('djGrid').innerHTML = (d.dj_nights || []).map(n => `
         <div class="card">
           <h3>${n.day} · ${n.title}</h3>
           <p class="muted">${n.desc}</p>
         </div>`).join('') || '<p class="muted">No nights scheduled.</p>';
-    })();
+    });
   </script>
 
   <section class="section text-center">

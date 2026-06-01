@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Excavate — Events Admin</title>
+  <meta http-equiv="refresh" content="0;url=index.html" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -89,9 +90,25 @@
     .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
 
     /* Mode tabs */
-    .mode-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+    .mode-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0; flex-wrap: wrap; }
     .mode-tab { padding: 0.65rem 1.4rem; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; background: transparent; border: none; color: var(--text-dim); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 200ms; }
     .mode-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+    /* Sheets setup */
+    .setup-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem; margin-bottom: 1.4rem; }
+    .setup-card h3 { font-family: var(--font-display); font-size: 0.95rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin: 0 0 0.8rem; }
+    .setup-card p { color: var(--text-dim); font-size: 0.87rem; line-height: 1.6; margin: 0 0 0.8rem; }
+    .setup-card code { background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; padding: 0.15rem 0.4rem; font-size: 0.82rem; color: var(--orange); font-family: monospace; }
+    .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 0.4rem; }
+    .status-dot.green { background: #4ade80; }
+    .status-dot.red { background: #f87171; }
+    .status-dot.grey { background: #666; }
+    .status-line { font-size: 0.82rem; color: var(--text-dim); display: flex; align-items: center; margin-top: 0.8rem; }
+    .col-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 0.6rem; }
+    .col-table th { text-align: left; padding: 0.4rem 0.6rem; background: var(--surface-2); color: var(--text-dim); font-family: var(--font-display); letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.7rem; }
+    .col-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border); color: var(--text); }
+    .col-table tr:last-child td { border-bottom: none; }
+    details summary { cursor: pointer; color: var(--text-dim); font-size: 0.82rem; margin-top: 0.8rem; }
 
     /* Section heading */
     .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; margin-top: 2rem; }
@@ -210,6 +227,7 @@
     <div class="mode-tabs">
       <button class="mode-tab active" onclick="switchTab('sports')">🏈 Sports Bar</button>
       <button class="mode-tab" onclick="switchTab('lounge')">◈ Hookah Lounge</button>
+      <button class="mode-tab" onclick="switchTab('setup')">⚙ Google Sheets</button>
     </div>
 
     <!-- SPORTS -->
@@ -226,6 +244,66 @@
         <button class="btn btn-primary btn-sm" onclick="openModal('sports_games')">+ Add Game</button>
       </div>
       <div class="event-list" id="list-sports_games"></div>
+
+    </div>
+
+    <!-- SETUP -->
+    <div id="tab-setup" style="display:none;">
+
+      <div class="setup-card">
+        <h3>Step 1 — Create your Google Sheet</h3>
+        <p>Go to <a href="https://sheets.google.com" target="_blank" style="color:var(--orange)">sheets.google.com</a> and create a new spreadsheet. Rename it <strong>Excavate Events</strong>.</p>
+        <p>Create <strong>4 tabs</strong> (sheets) with these exact names:</p>
+        <p><code>sports_games</code> &nbsp; <code>sports_parties</code> &nbsp; <code>lounge_events</code> &nbsp; <code>dj_nights</code></p>
+
+        <details>
+          <summary>Show required column names for each tab →</summary>
+          <p style="margin-top:1rem;"><strong>sports_games</strong></p>
+          <table class="col-table"><tr><th>league</th><th>time</th><th>home</th><th>away</th><th>screen</th><th>live</th></tr>
+          <tr><td>NFL</td><td>Sunday 1 PM</td><td>Cowboys</td><td>Eagles</td><td>Main wall</td><td>TRUE</td></tr></table>
+
+          <p style="margin-top:1rem;"><strong>sports_parties</strong></p>
+          <table class="col-table"><tr><th>title</th><th>badge</th><th>desc</th></tr>
+          <tr><td>Sunday Funday</td><td>Every Sunday</td><td>Every Sunday · 11 AM...</td></tr></table>
+
+          <p style="margin-top:1rem;"><strong>lounge_events</strong></p>
+          <table class="col-table"><tr><th>night</th><th>title</th><th>desc</th><th>detail</th><th>featured</th></tr>
+          <tr><td>Every Wednesday</td><td>Ladies Night</td><td>Complimentary...</td><td>Starts 9 PM</td><td>FALSE</td></tr></table>
+
+          <p style="margin-top:1rem;"><strong>dj_nights</strong></p>
+          <table class="col-table"><tr><th>day</th><th>title</th><th>desc</th></tr>
+          <tr><td>Thursday</td><td>R&B & Afrobeats</td><td>10 PM – 2 AM...</td></tr></table>
+        </details>
+      </div>
+
+      <div class="setup-card">
+        <h3>Step 2 — Publish the sheet</h3>
+        <p>In your Google Sheet: <strong>File → Share → Publish to web</strong></p>
+        <p>Select <strong>Entire Document</strong> and <strong>Web page</strong>, then click <strong>Publish</strong>. Confirm when prompted.</p>
+      </div>
+
+      <div class="setup-card">
+        <h3>Step 3 — Paste your Sheet ID</h3>
+        <p>Your Sheet ID is the long string in the URL between <code>/d/</code> and <code>/edit</code>:<br/>
+        <code>docs.google.com/spreadsheets/d/<strong style="color:#fff">THIS_PART</strong>/edit</code></p>
+        <div class="form-group" style="margin-top:1rem;">
+          <label>Sheet ID</label>
+          <input id="sheetIdInput" placeholder="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms" />
+        </div>
+        <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="saveSheetId()">Save &amp; Test Connection</button>
+          <button class="btn btn-ghost" onclick="clearSheetId()">Disconnect</button>
+        </div>
+        <div class="status-line" id="sheetStatus">
+          <span class="status-dot grey"></span> Not configured
+        </div>
+      </div>
+
+      <div class="setup-card">
+        <h3>How it works</h3>
+        <p>Once connected, every page on your site will fetch the latest events from your Google Sheet automatically — no code changes needed. Just edit the sheet and refresh the page.</p>
+        <p>The site caches data for <strong>5 minutes</strong> to stay fast. After updating your sheet, wait a moment and refresh.</p>
+      </div>
 
     </div>
 
@@ -326,13 +404,64 @@
     localStorage.setItem('excavate-events', JSON.stringify(data));
   }
 
+  const SHEET_KEY = 'excavate-sheet-id';
+
   // ---- Tabs ----
   let currentTab = 'sports';
   function switchTab(tab) {
     currentTab = tab;
     document.getElementById('tab-sports').style.display = tab === 'sports' ? 'block' : 'none';
     document.getElementById('tab-lounge').style.display = tab === 'lounge' ? 'block' : 'none';
-    document.querySelectorAll('.mode-tab').forEach((t, i) => t.classList.toggle('active', i === (tab === 'sports' ? 0 : 1)));
+    document.getElementById('tab-setup').style.display  = tab === 'setup'  ? 'block' : 'none';
+    document.querySelectorAll('.mode-tab').forEach((t, i) => {
+      t.classList.toggle('active', ['sports','lounge','setup'][i] === tab);
+    });
+    if (tab === 'setup') loadSheetStatus();
+  }
+
+  // ---- Google Sheets setup ----
+  function loadSheetStatus() {
+    const id = (() => { try { return localStorage.getItem(SHEET_KEY) || ''; } catch { return ''; } })();
+    const input = document.getElementById('sheetIdInput');
+    if (input && id) input.value = id;
+    setSheetStatus(id ? 'saved' : 'none', id ? 'Sheet ID saved — test to verify connection' : 'Not configured');
+  }
+
+  function setSheetStatus(state, msg) {
+    const el = document.getElementById('sheetStatus');
+    if (!el) return;
+    const dot = state === 'ok' ? 'green' : state === 'error' ? 'red' : 'grey';
+    el.innerHTML = `<span class="status-dot ${dot}"></span> ${msg}`;
+  }
+
+  async function saveSheetId() {
+    const id = (document.getElementById('sheetIdInput').value || '').trim();
+    if (!id) { setSheetStatus('error', 'Please paste your Sheet ID first'); return; }
+    setSheetStatus('grey', 'Testing connection…');
+    try {
+      const url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json&sheet=sports_games`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+      JSON.parse(text.replace(/^[^{]*/, '').replace(/\);?\s*$/, ''));
+      localStorage.setItem(SHEET_KEY, id);
+      // Bust cache so pages reload fresh data
+      localStorage.removeItem('excavate-events');
+      localStorage.removeItem('excavate-events-ts');
+      setSheetStatus('ok', 'Connected! Your site will now load events from Google Sheets.');
+      toast('Google Sheets connected ✓');
+    } catch (e) {
+      setSheetStatus('error', 'Connection failed — check your Sheet ID and that the sheet is published.');
+    }
+  }
+
+  function clearSheetId() {
+    localStorage.removeItem(SHEET_KEY);
+    localStorage.removeItem('excavate-events');
+    localStorage.removeItem('excavate-events-ts');
+    document.getElementById('sheetIdInput').value = '';
+    setSheetStatus('grey', 'Disconnected — site will use hardcoded defaults');
+    toast('Disconnected');
   }
 
   // ---- Render ----
