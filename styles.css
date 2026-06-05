@@ -312,11 +312,6 @@ p { margin: 0 0 1em; color: var(--text-dim); }
   pointer-events: none;
 }
 
-body[data-mode="sports"] .nav-menu-link {
-  opacity: 0.35;
-  pointer-events: none;
-  cursor: not-allowed;
-}
 
 /* ---------- Dual-Mode Hero (Home) ---------- */
 .hero-dual {
