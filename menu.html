@@ -100,6 +100,10 @@
     .hk-policy p { color: #a99bbf; font-size: 0.9rem; margin-bottom: 0.3rem; }
     .hk-note { font-style: italic; font-size: 0.8rem !important; margin-top: 0.8rem !important; }
 
+    /* Lounge tab panels */
+    .lounge-panel { display: none; }
+    .lounge-panel.active { display: block; animation: fadeInUp 400ms ease; }
+
     /* Sub-tabs */
     .sub-tabs {
       display: flex;
@@ -365,96 +369,226 @@
 
       </div>
 
-      <!-- HOOKAH — lounge mode only -->
-      <div class="menu-panel active lounge-only lounge-always-show" data-panel="hookah">
+      <!-- LOUNGE MENU — lounge mode only -->
+      <div class="lounge-only lounge-always-show">
 
-        <!-- Excavate Signature Blends -->
-        <div class="hk-section">
-          <h2 class="hk-heading">Excavate Signature Blends</h2>
-          <div class="hk-list">
-            <div class="hk-item"><span class="hk-name">Excavate Reserve</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Midnight Smoke</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Dark Matter</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Smoke &amp; Mirrors</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Excavate Nights</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Desert Storm</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">The Deep Dig</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Underground</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Night Shift</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Black Diamond</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+        <!-- Lounge top-level tabs -->
+        <div class="menu-tabs" id="loungeTabs" role="tablist">
+          <button class="menu-tab active" data-ltab="hookah">Hookah</button>
+          <button class="menu-tab" data-ltab="beverages">Beverages</button>
+          <button class="menu-tab" data-ltab="snacks">Snacks &amp; More</button>
+        </div>
+
+        <!-- ── HOOKAH ── -->
+        <div class="lounge-panel active" data-lpanel="hookah">
+
+          <div class="hk-section">
+            <h2 class="hk-heading">House Blends</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Excavate Reserve</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Dark Matter</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Excavate Nights</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Thee Deep Dig</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Night Shift</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Mid Night Smoke</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Smoke and Mirror</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Desert Storm</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Underground</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Mint Loader</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+            </div>
           </div>
-        </div>
 
-        <!-- Premium Flavors -->
-        <div class="hk-section">
-          <h2 class="hk-heading">Premium Flavors</h2>
-          <div class="hk-list">
-            <div class="hk-item"><span class="hk-name">Ambrosia</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Berry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Blue Mist</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Blueberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Blueberry Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Chocolate</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Citrus Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Coconut</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Code69</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Double Apple</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Dragon Fruit</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Elaichi</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Grape</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Guava</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Gum</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Gum Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Kesar Paan</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Kiwi</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Lady Killer</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Lemon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Lemon Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Love 66</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Lychee</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Magic Love</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Mango</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Miami Nights</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Orange</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Orange Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Paan Masala</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Paan Ras</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Peach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Pineapple</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Rose</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Sex on the Beach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Skyfall</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Strawberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Strawberry Margarita</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Vanilla</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Watermelon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Watermelon Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">White Gummy Bear</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+          <div class="hk-section">
+            <h2 class="hk-heading">Star Buzz</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Blue Mist</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Miami Nights</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Sex on the Beach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Safari Melon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">White Peach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Melon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Strawberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+            </div>
           </div>
-        </div>
 
-        <!-- Brands -->
-        <div class="hk-section">
-          <h2 class="hk-heading">Brands</h2>
-          <div class="hk-list">
-            <div class="hk-item"><span class="hk-name">Al-Fakher</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Adalya</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Afzal</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Fumari</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            <div class="hk-item"><span class="hk-name">Star Buzz</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+          <div class="hk-section">
+            <h2 class="hk-heading">Fumari</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Vanilla</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">White Gummy Bear</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Ambrosia</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Citrus Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+            </div>
           </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Fruit Flavors</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Double Apple</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Grape</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Orange</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Lemon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Watermelon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Strawberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Blueberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Mango</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Peach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Pineapple</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Kiwi</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Guava</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+            </div>
+          </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Adalya</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Love 66</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Lady Killer</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Skyfall</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Magic Love</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Code69</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Ice</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Blue Melon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+            </div>
+          </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Afzal</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Lychee</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Paan Ras</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Kesar Paan</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Paan Masala</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Rose</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Hazlenut</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Special Pan</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Sweet Pan</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Pan Twist</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Grapefruit</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Blue Lychee</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+            </div>
+          </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Al Fakher</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Blueberry Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Orange Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Lemon Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Watermelon Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Coconut</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Gum</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Berry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+              <div class="hk-item"><span class="hk-name">Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
+            </div>
+          </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Add Ons</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Ice Base</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Mocktail Base</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Milk Base</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Ice Hose</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+            </div>
+          </div>
+
+          <div class="hk-policy">
+            <h4>Hookah Policy</h4>
+            <p>Max 2 Persons per Hookah</p>
+            <p>Additional Person charge — $6.99</p>
+            <p class="hk-note">Some items may contain allergens. Please notify your server of any dietary restrictions before ordering.</p>
+          </div>
+
         </div>
 
-        <!-- Policy -->
-        <div class="hk-policy">
-          <h4>Hookah Policy</h4>
-          <p>Max 2 Persons per Hookah</p>
-          <p>Additional Person charge — $6.99</p>
-          <p class="hk-note">Some items may contain allergens. Please notify your server of any dietary restrictions before ordering.</p>
+        <!-- ── BEVERAGES ── -->
+        <div class="lounge-panel" data-lpanel="beverages">
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Alcoholic Beverages</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Revolver Blood and Honey</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Corona Extra</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Michelob Ultra</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Modelo Especial</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Shiner Bock</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Heineken</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Dos Equis</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Bud Light</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Lone River Ranch Water</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">High Noon</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Taj Mahal</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Arka</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Flying Horse</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Heineken 0.0</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+            </div>
+          </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Beverages</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Pepsi</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Pepsi Zero Sugar</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Coke</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Coke Zero</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Poppi</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Ginger Ale</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Mountain Dew</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Strawberry Lemonade</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Tropicana</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Cranberry Juice</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Starbucks</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Red Bull</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Red Bull Sugar Free</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Club Soda</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Coconut Water</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Brewed Tea Lemon</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Brewed Tea Unsweetened</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+            </div>
+          </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Hot Teas</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Green Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Black Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Turmeric Chamomile Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Turmeric Citrus Ginger Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Turmeric Ginger Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Turmeric Moringa Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+            </div>
+          </div>
+
         </div>
 
-      </div>
+        <!-- ── SNACKS & MORE ── -->
+        <div class="lounge-panel" data-lpanel="snacks">
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Snacks</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Sun Chips</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Doritos</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Fritos</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Cheetos</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Lays</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Ruffles Cheddar &amp; Sour Cream</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Nuts</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+            </div>
+          </div>
+
+          <div class="hk-section">
+            <h2 class="hk-heading">Ice Creams &amp; Kulfis</h2>
+            <div class="hk-list">
+              <div class="hk-item"><span class="hk-name">Ice Cream</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+              <div class="hk-item"><span class="hk-name">Kulfis</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- end lounge menu -->
 
     </div>
   </section>
@@ -507,6 +641,17 @@
         document.querySelectorAll('[data-dsub-panel]').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         document.querySelector('[data-dsub-panel="' + target + '"]').classList.add('active');
+      });
+    });
+
+    // Lounge top-level tabs
+    document.querySelectorAll('[data-ltab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.ltab;
+        document.querySelectorAll('[data-ltab]').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('[data-lpanel]').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector('[data-lpanel="' + target + '"]').classList.add('active');
       });
     });
   </script>
