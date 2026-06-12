@@ -43,22 +43,65 @@
 
   <section class="section">
     <div class="container">
-      <div class="gallery">
-        <div class="tile wide"><div class="placeholder">Main Wall · Game Day</div></div>
-        <div class="tile"><div class="placeholder">Booth Seating</div></div>
-        <div class="tile tall"><div class="placeholder">Lounge Pod</div></div>
-        <div class="tile"><div class="placeholder">Hookah Setup</div></div>
-        <div class="tile"><div class="placeholder">Bar</div></div>
-        <div class="tile"><div class="placeholder">DJ Booth</div></div>
-        <div class="tile wide"><div class="placeholder">Crowd Night</div></div>
-        <div class="tile"><div class="placeholder">VIP Pod</div></div>
-        <div class="tile"><div class="placeholder">Terrace</div></div>
-        <div class="tile"><div class="placeholder">Smash Burger</div></div>
-        <div class="tile"><div class="placeholder">Wings Platter</div></div>
-        <div class="tile"><div class="placeholder">Signature Cocktail</div></div>
+      <div class="text-center mb-3">
+        <span class="eyebrow">Photos</span>
+        <h2>Inside Excavate</h2>
+        <p class="muted" style="max-width:520px;margin:0 auto 2rem;">The bar, the drinks, the food — a glimpse of what's waiting.</p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="menu-tabs" id="galleryTabs" style="margin-bottom:2rem;">
+        <button class="menu-tab active" data-filter="all">All</button>
+        <button class="menu-tab" data-filter="bar">Bar</button>
+        <button class="menu-tab" data-filter="drinks">Drinks</button>
+        <button class="menu-tab" data-filter="food">Food</button>
+      </div>
+
+      <!-- Gallery grid -->
+      <div class="gallery-full" id="galleryGrid">
+        <!-- Bar -->
+        <div class="gtile gtile-wide" data-cat="bar"><img src="assets/gallery/bar_1.jpeg" alt="Bar" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="bar"><img src="assets/gallery/bar_2.jpeg" alt="Bar" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="bar"><img src="assets/gallery/bar_3.jpeg" alt="Bar" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="bar"><img src="assets/gallery/bar_4.jpeg" alt="Bar" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="bar"><img src="assets/gallery/bar_5.jpeg" alt="Bar" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <!-- Drinks -->
+        <div class="gtile" data-cat="drinks"><img src="assets/gallery/drink_1.jpeg" alt="Drink" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="drinks"><img src="assets/gallery/drink_2.jpeg" alt="Drink" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile gtile-wide" data-cat="drinks"><img src="assets/gallery/drink_3.jpeg" alt="Drink" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="drinks"><img src="assets/gallery/drink_4.jpeg" alt="Drink" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <!-- Food -->
+        <div class="gtile gtile-wide" data-cat="food"><img src="assets/gallery/food_1.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_2.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_3.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_4.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_5.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_6.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_7.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile gtile-wide" data-cat="food"><img src="assets/gallery/food_8.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_9.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_10.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="gtile" data-cat="food"><img src="assets/gallery/food_11.jpeg" alt="Food" style="width:100%;height:100%;object-fit:cover;" /></div>
       </div>
     </div>
   </section>
+
+  <script>
+    (function () {
+      const tabs = document.querySelectorAll('#galleryTabs .menu-tab');
+      const tiles = document.querySelectorAll('#galleryGrid .gtile');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const filter = tab.dataset.filter;
+          tiles.forEach(tile => {
+            tile.style.display = (filter === 'all' || tile.dataset.cat === filter) ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
 
   <section class="section text-center">
     <div class="container">
