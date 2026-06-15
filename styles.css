@@ -1349,7 +1349,7 @@ body[data-mode="sports"] .lounge-only { display: none; }
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
   padding: 6rem 1rem 4rem;
-  background-image: url('assets/sportsbar.png');
+  background-image: url('assets/sportsbar.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1387,7 +1387,7 @@ body[data-mode="sports"] .lounge-only { display: none; }
 .splash {
   position: fixed; inset: 0; z-index: 5000;
   display: flex; align-items: center; justify-content: center;
-  background-image: url('assets/sportsbar.png');
+  background-image: url('assets/sportsbar.jpeg');
   background-size: cover; background-position: center;
   transition: opacity 700ms var(--ease), visibility 700ms var(--ease);
   visibility: visible;
