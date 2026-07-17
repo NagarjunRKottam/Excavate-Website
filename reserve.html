@@ -50,8 +50,11 @@
 
   <section class="section">
     <div class="container" style="max-width: 820px;">
-      <form id="reserveForm" class="card" style="padding: 2.4rem;">
+      <form id="reserveForm" class="card" style="padding: 2.4rem;" name="reservation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <h2 style="margin-bottom:1.4rem;">Reservation Details</h2>
+
+        <input type="hidden" name="form-name" value="reservation" />
+        <p style="display:none;"><input name="bot-field" /></p>
 
         <div class="form-grid">
           <div class="field">
