@@ -591,6 +591,7 @@ p { margin: 0 0 1em; color: var(--text-dim); }
   text-transform: uppercase; color: var(--text);
 }
 .menu-list .item-desc { display: block; color: var(--text-dim); font-size: 0.85rem; margin-top: 0.2rem; letter-spacing: 0; text-transform: none; font-family: var(--font-body); }
+.menu-list .item-desc em { font-size: 0.75rem; }
 .menu-list .item-price {
   font-family: var(--font-display); color: var(--primary);
   font-size: 1.05rem;
