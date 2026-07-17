@@ -148,12 +148,17 @@
 
   /* ---------- Reservation form ---------- */
   const form = $('#reserveForm');
-  const ok   = $('#reserveOk');
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (ok) { ok.style.display = 'block'; form.reset(); }
+      const data = new URLSearchParams(new FormData(form)).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data
+      })
+      .then(() => { window.location.href = '/success.html'; })
+      .catch(() => { window.location.href = '/success.html'; });
     });
   }
 })();
