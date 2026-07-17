@@ -10,6 +10,13 @@
   <link rel="apple-touch-icon" href="assets/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=5" />
+  <style>
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body data-mode="sports">
 
@@ -62,11 +69,11 @@
 
           <div class="field">
             <label for="date">Date</label>
-            <input id="date" name="date" type="date" required />
+            <input id="date" name="date" type="date" required style="color-scheme: dark;" />
           </div>
           <div class="field">
             <label for="time">Time</label>
-            <input id="time" name="time" type="time" required />
+            <input id="time" name="time" type="time" required style="color-scheme: dark;" />
           </div>
           <div class="field">
             <label for="party">Party Size</label>
@@ -79,13 +86,8 @@
           <div class="field">
             <label for="zone">Preferred Zone</label>
             <select id="zone" name="zone">
-              <option>Any available</option>
-              <option>Main Wall (Sports)</option>
-              <option>Booth (Sports)</option>
-              <option>Lounge Corner</option>
-              <option>VIP Pod (Lounge)</option>
-              <option>Terrace</option>
-              <option>Private Event</option>
+              <option>Sports Bar</option>
+              <option>Lounge</option>
             </select>
           </div>
 
@@ -133,5 +135,8 @@
 
   <div class="mode-flash" id="modeFlash"></div>
   <script src="app.js"></script>
+  <script>
+    document.getElementById('date').value = new Date().toISOString().split('T')[0];
+  </script>
 </body>
 </html>
