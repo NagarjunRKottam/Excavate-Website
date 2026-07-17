@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservation Received | Excavate</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body data-mode="sports">
+
+  <div class="nav-overlay" id="navOverlay"></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="reserve.html">Reserve</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Excavate" /></a>
+      <div class="nav-right">
+        <div class="nav-mode-toggle" role="tablist">
+          <button data-mode-btn="sports" type="button">Sports</button>
+          <button data-mode-btn="lounge" type="button">Lounge</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section" style="min-height: 70vh; display: flex; align-items: center;">
+    <div class="container" style="max-width: 600px; text-align: center;">
+      <div class="card" style="padding: 3rem 2.4rem;">
+        <h2 style="color: var(--primary); margin-bottom: 0.6rem;">Reservation Received!</h2>
+        <p class="muted" style="margin-bottom: 2rem;">Thanks for reaching out — we'll confirm your reservation within 2 hours during business hours.</p>
+        <a href="index.html" class="btn btn-solid btn-xl">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mode-flash" id="modeFlash"></div>
+  <script src="app.js"></script>
+</body>
+</html>
