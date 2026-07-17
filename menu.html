@@ -295,9 +295,20 @@
         const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&sheet=' + encodeURIComponent(name);
         const res = await fetch(url);
         const text = await res.text();
-        const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/)[1]);
-        const cols = json.table.cols.map(c => c.label);
-        return json.table.rows
+        const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/);
+        if (!match) { console.error('No gviz response for sheet:', name); return []; }
+        let json;
+        try { json = JSON.parse(match[1]); } catch(e) { console.error('JSON parse error for sheet:', name, e); return []; }
+        if (!json.table || !json.table.rows) { console.error('No table data for sheet:', name, json); return []; }
+        let cols = json.table.cols.map(c => c.label);
+        let dataRows = json.table.rows;
+        // If gviz returns empty col labels, first row contains the headers
+        if (cols.every(c => !c)) {
+          const firstRow = dataRows[0];
+          cols = firstRow.c.map(cell => (cell && cell.v) ? String(cell.v).trim() : '');
+          dataRows = dataRows.slice(1);
+        }
+        return dataRows
           .map(row => {
             const obj = {};
             row.c.forEach((cell, i) => {
