@@ -292,7 +292,7 @@
       const SHEET_ID = '1yEQKYwEtMKKKz-jpTRtbiAYQ_bht3AZ9wbxAy7poBZQ';
 
       async function fetchSheet(name) {
-        const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&sheet=' + encodeURIComponent(name);
+        const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&headers=1&sheet=' + encodeURIComponent(name);
         const res = await fetch(url);
         const text = await res.text();
         const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/);
