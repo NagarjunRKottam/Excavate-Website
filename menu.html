@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=5" />
   <style>
-    /* Hero */
     .menu-hero {
       position: relative;
       min-height: 60vh;
@@ -24,134 +23,52 @@
       padding-top: 140px;
       padding-bottom: 60px;
     }
-    body[data-mode="sports"] .menu-hero {
-      background-image: url('assets/sportsbar.jpeg');
-    }
-    .menu-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 0;
-    }
+    body[data-mode="sports"] .menu-hero { background-image: url('assets/sportsbar.jpeg'); }
+    .menu-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.65); z-index: 0; }
     .menu-hero-inner { position: relative; z-index: 1; width: 100%; }
-    .menu-hero-title {
-      font-size: clamp(3.5rem, 10vw, 7rem) !important;
-      color: #fff !important;
-      margin: 0 0 0.4rem !important;
-      text-transform: uppercase;
-      line-height: 1;
-    }
+    .menu-hero-title { font-size: clamp(3.5rem, 10vw, 7rem) !important; color: #fff !important; margin: 0 0 0.4rem !important; text-transform: uppercase; line-height: 1; }
     .menu-hero-divider { width: 70px; height: 2px; background: #e4572e; margin: 0.7rem auto; }
     .menu-hero-sub { color: rgba(255,255,255,0.75); font-style: italic; font-size: 1rem; }
 
-    /* Lounge mode: hide sports content */
     body[data-mode="lounge"] .sports-only { display: none !important; }
     body[data-mode="lounge"] .lounge-always-show { display: block !important; }
     body[data-mode="sports"] .lounge-only { display: none !important; }
 
-    /* Hookah list */
     .hk-section { margin-bottom: 3rem; }
-    .hk-heading {
-      font-family: 'Cormorant Garamond', Georgia, serif !important;
-      font-size: 1.7rem !important;
-      font-weight: 600 !important;
-      color: #e4572e !important;
-      text-transform: none !important;
-      letter-spacing: 0.01em !important;
-      border-bottom: 1px solid rgba(228,87,46,0.35);
-      padding-bottom: 0.5rem;
-      margin-bottom: 0;
-    }
-    .hk-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 3rem;
-    }
+    .hk-heading { font-family: 'Cormorant Garamond', Georgia, serif !important; font-size: 1.7rem !important; font-weight: 600 !important; color: #e4572e !important; text-transform: none !important; letter-spacing: 0.01em !important; border-bottom: 1px solid rgba(228,87,46,0.35); padding-bottom: 0.5rem; margin-bottom: 0; }
+    .hk-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; }
     @media (max-width: 640px) { .hk-list { grid-template-columns: 1fr; } }
-    .hk-item {
-      display: flex;
-      align-items: center;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .hk-name {
-      color: #ece4f5;
-      font-size: 1rem;
-      font-weight: 400;
-      font-family: 'Inter', sans-serif;
-      flex-shrink: 0;
-    }
-    .hk-dots {
-      flex: 1;
-      height: 1px;
-      margin: 0 0.8rem;
-      min-width: 16px;
-      background-image: repeating-linear-gradient(to right, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.22) 3px, transparent 3px, transparent 9px);
-    }
-    .hk-price {
-      color: #e4572e;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.9rem;
-      flex-shrink: 0;
-    }
+    .hk-item { display: flex; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .hk-name { color: #ece4f5; font-size: 1rem; font-weight: 400; font-family: 'Inter', sans-serif; flex-shrink: 0; }
+    .hk-dots { flex: 1; height: 1px; margin: 0 0.8rem; min-width: 16px; background-image: repeating-linear-gradient(to right, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.22) 3px, transparent 3px, transparent 9px); }
+    .hk-price { color: #e4572e; font-family: 'Oswald', sans-serif; font-size: 0.9rem; flex-shrink: 0; }
     .hk-policy { text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; margin-top: 1rem; }
     .hk-policy h4 { color: #e4572e; letter-spacing: 0.15em; font-size: 0.95rem; }
     .hk-policy p { color: #a99bbf; font-size: 0.9rem; margin-bottom: 0.3rem; }
     .hk-note { font-style: italic; font-size: 0.8rem !important; margin-top: 0.8rem !important; }
 
-    /* Lounge tab panels */
     .lounge-panel { display: none; }
     .lounge-panel.active { display: block; animation: fadeInUp 400ms ease; }
 
-    /* Sub-tabs */
-    .sub-tabs {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.8rem;
-      justify-content: center;
-    }
-    .sub-tab {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.25);
-      color: rgba(255,255,255,0.85);
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 200ms ease;
-    }
+    .sub-tabs { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.8rem; justify-content: center; }
+    .sub-tab { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.85); font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 999px; cursor: pointer; transition: all 200ms ease; }
     .sub-tab:hover { color: #e4572e; border-color: #e4572e; }
     .sub-tab.active { background: #e4572e; color: #fff; border-color: #e4572e; font-weight: 600; }
     .sub-panel { display: none; animation: fadeInUp 300ms ease; }
     .sub-panel.active { display: block; }
 
-    /* Section headings — smaller, accented, easier to scan */
-    .sub-panel h2 {
-      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
-      color: #e4572e;
-      letter-spacing: 0.1em;
-      margin: 0 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid rgba(228,87,46,0.3);
-    }
+    .sub-panel h2 { font-size: clamp(1.25rem, 2.2vw, 1.7rem); color: #e4572e; letter-spacing: 0.1em; margin: 0 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(228,87,46,0.3); }
     .sub-panel h2.mt-3 { margin-top: 2.5rem; }
-    /* Breathing room between sections in Full Menu view */
     .sub-panel.active + .sub-panel.active { margin-top: 3rem; }
-    /* Larger, more readable item descriptions */
     .sub-panel .menu-list .item-desc { font-size: 0.98rem; line-height: 1.6; }
+    .menu-list .item-desc em { font-size: 0.75rem; }
+
+    .menu-loading { color: rgba(255,255,255,0.35); font-style: italic; font-size: 0.9rem; padding: 1rem 0; }
   </style>
 </head>
 <body data-mode="sports">
 
-  <!-- Nav overlay -->
   <div class="nav-overlay" id="navOverlay"></div>
-
-    <!-- Nav drawer (outside nav to avoid stacking context issues) -->
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="menu.html" class="active">Menu</a></li>
@@ -167,17 +84,15 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="Excavate" /></a>
       <div class="nav-right">
-      <div class="nav-mode-toggle" role="tablist">
-        <button data-mode-btn="sports" type="button">Sports</button>
-        <button data-mode-btn="lounge" type="button">Lounge</button>
-      </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+        <div class="nav-mode-toggle" role="tablist">
+          <button data-mode-btn="sports" type="button">Sports</button>
+          <button data-mode-btn="lounge" type="button">Lounge</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
 
-
-  <!-- Menu Hero -->
   <header class="menu-hero">
     <div class="menu-hero-inner">
       <h1 class="menu-hero-title">Menu</h1>
@@ -189,17 +104,15 @@
 
   <section class="section" style="padding-top:2rem;">
     <div class="container">
-      <!-- Tabs — hidden in lounge mode -->
+
       <div class="menu-tabs sports-only" role="tablist">
         <button class="menu-tab active" data-tab="gameday">Food Menu</button>
         <button class="menu-tab" data-tab="drinks">Bar &amp; Beverages</button>
         <button class="menu-tab" data-tab="happyhour">Happy Hour</button>
       </div>
 
-      <!-- GAME DAY -->
+      <!-- FOOD -->
       <div class="menu-panel active sports-only" data-panel="gameday">
-
-        <!-- Sub-tabs -->
         <div class="sub-tabs" role="tablist">
           <button class="sub-tab active" data-sub="all">Full Menu</button>
           <button class="sub-tab" data-sub="starters">Appetizers</button>
@@ -215,534 +128,91 @@
           <button class="sub-tab" data-sub="softdrinks">Soft Drinks</button>
         </div>
 
-        <!-- Appetizers -->
-        <div class="sub-panel active" data-sub-panel="starters">
-          <h2>Appetizers</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Excavator Fries</span><span class="item-desc">Crispy seasoned fries tossed in Excavate's signature spice blend and served with our house-made dipping sauce.<br><em>*Add Chicken Tinga &amp; Cheese +$4</em></span></div><span class="item-price">$10.99</span></li>
-            <li><div><span class="item-name">Fried Pickles</span><span class="item-desc">Crispy pickle slices served with our house-made ranch dip.</span></div><span class="item-price">$11.99</span></li>
-            <li><div><span class="item-name">Dynamite Jalapeños</span><span class="item-desc">Lightly breaded jalapeño slices fried until golden and crisp, served with house-made ranch.</span></div><span class="item-price">$11.99</span></li>
-            <li><div><span class="item-name">Fire-Blistered Shishitos</span><span class="item-desc">Wine-flambéed shishito peppers finished with house-made herb oil and served with creamy house-made ranch.</span></div><span class="item-price">$11.99</span></li>
-            <li><div><span class="item-name">Jamaican Jerk Skewers</span><span class="item-desc">Tender grilled chicken, spicy and packed with Caribbean flavor. Served with house-made cilantro sauce.<br><em>*Substitute Shrimp +$3</em></span></div><span class="item-price">$12.99</span></li>
-            <li><div><span class="item-name">Golden Mac &amp; Cheese Bites</span><span class="item-desc">Creamy macaroni and cheese bites coated in seasoned breadcrumbs and fried golden brown.</span></div><span class="item-price">$11.99</span></li>
-            <li><div><span class="item-name">Quesadilla</span><span class="item-desc">Filled with cheddar-jack cheese, jalapeños, pico de gallo, and cilantro. Served with sour cream, guacamole, and house salsa.<br><em>*Add Chicken Tinga +$3 · Add Shrimp +$5</em></span></div><span class="item-price">$13.99</span></li>
-            <li><div><span class="item-name">Loaded Nachos</span><span class="item-desc">House-made tortilla chips layered with queso, cheddar-jack cheese, jalapeños, pico de gallo, black olives, guacamole, ancho sour cream, and cilantro.<br><em>*Add Chicken Tinga +$3 · Add Shrimp +$5</em></span></div><span class="item-price">$17.99</span></li>
-            <li><div><span class="item-name">Excavate Game Day Platter</span><span class="item-desc">A shareable platter featuring Dynamite Jalapeños, Fire-Blistered Shishitos, Mac &amp; Cheese Bites, and 6 Chicken Wings with your choice of sauce or dry rub.</span></div><span class="item-price">$29.99</span></li>
-          </ul>
-        </div>
-
-        <!-- Wings -->
-        <div class="sub-panel active" data-sub-panel="wings">
-          <h2>Classic Bone-In Wings</h2>
-          <p style="color:#a99bbf; font-size:0.95rem; margin-bottom:1.2rem;">Crispy, juicy wings tossed in your choice of signature sauce or dry rub. Served with celery, carrots, and house-made ranch or bleu cheese.</p>
-          <ul class="menu-list">
-            <li><div><span class="item-name">6 Wings</span><span class="item-desc">Choice of 1 Flavor</span></div><span class="item-price">$11.99</span></li>
-            <li><div><span class="item-name">12 Wings</span><span class="item-desc">Choice of Up to 2 Flavors</span></div><span class="item-price">$20.99</span></li>
-            <li><div><span class="item-name">20 Wings</span><span class="item-desc">Choice of Up to 3 Flavors</span></div><span class="item-price">$33.99</span></li>
-          </ul>
-          <p style="color:#a99bbf; font-size:0.9rem; margin-top:-0.6rem; margin-bottom:0;"><strong style="color:#ece4f5;">Sauces:</strong> Buffalo Mild · Buffalo Hot · Sweet Chili · Mango Habanero</p>
-          <p style="color:#a99bbf; font-size:0.9rem; margin:0.2rem 0 0;"><strong style="color:#ece4f5;">Dry Rubs:</strong> Garlic Parmesan · Lemon Pepper · Ranch · House Spice</p>
-          <p style="color:#a99bbf; font-size:0.9rem; margin:0.2rem 0 0;"><em>*Extra Dressing +$0.99</em></p>
-        </div>
-
-        <!-- Salads -->
-        <div class="sub-panel active" data-sub-panel="salads">
-          <h2>Fresh Salads</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Caesar Salad</span><span class="item-desc">Crisp romaine tossed in creamy Caesar dressing with shaved Parmesan and house-made garlic croutons.</span></div><span class="item-price">$11.99</span></li>
-            <li><div><span class="item-name">House Salad</span><span class="item-desc">Fresh mixed greens topped with tomatoes, cucumbers, shredded carrots, red onions, cheddar-jack cheese, and house-made croutons. Served with your choice of ranch, bleu cheese, or balsamic vinaigrette.</span></div><span class="item-price">$10.99</span></li>
-          </ul>
-          <p style="color:#a99bbf; font-size:0.9rem; margin-top:-0.6rem;"><strong style="color:#ece4f5;">Add Protein:</strong> Grilled or Crispy Chicken +$5 · Grilled Shrimp +$7 · Blackened Salmon +$9</p>
-        </div>
-
-        <!-- Pizzas & Flatbreads -->
-        <div class="sub-panel active" data-sub-panel="pizzas">
-          <h2>Pizzas &amp; Flatbreads</h2>
-          <p style="color:#a99bbf; font-size:0.95rem; margin-bottom:1.2rem;">All pizzas and flatbreads are served on a 10-inch crust.</p>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Cheese Pizza</span><span class="item-desc">House marinara and melted mozzarella baked on a crisp, golden crust.</span></div><span class="item-price">$13.99</span></li>
-            <li><div><span class="item-name">Margherita Pizza</span><span class="item-desc">House marinara, fresh mozzarella, sliced tomatoes, fresh basil, and a balsamic drizzle on a crisp, golden crust.</span></div><span class="item-price">$14.99</span></li>
-            <li><div><span class="item-name">Classic Pepperoni Pizza</span><span class="item-desc">House marinara, melted mozzarella, and crispy pepperoni.</span></div><span class="item-price">$15.99</span></li>
-            <li><div><span class="item-name">Loaded Veggie Pizza</span><span class="item-desc">House marinara and mozzarella topped with mushrooms, bell peppers, red onions, black olives, and fresh spinach.</span></div><span class="item-price">$16.49</span></li>
-            <li><div><span class="item-name">Hawaiian Pizza</span><span class="item-desc">House marinara and mozzarella topped with smoked ham, charred pineapple, and red onions.</span></div><span class="item-price">$16.49</span></li>
-            <li><div><span class="item-name">Chicken &amp; Sausage Alfredo Flatbread</span><span class="item-desc">Creamy garlic Alfredo sauce topped with grilled chicken, Italian sausage, spinach, bell peppers, and melted mozzarella.</span></div><span class="item-price">$16.99</span></li>
-          </ul>
-          <p style="color:#a99bbf; font-size:0.9rem; margin-top:-0.6rem;"><strong style="color:#ece4f5;">Additional Toppings:</strong> Vegetables +$1 · Pepperoni or Sausage +$1.50 · Chicken +$2.50</p>
-        </div>
-
-        <!-- Burgers & Sandwiches -->
-        <div class="sub-panel active" data-sub-panel="burgers">
-          <h2>Burgers &amp; Sandwiches</h2>
-          <p style="color:#a99bbf; font-size:0.95rem; margin-bottom:0.5rem;">Served with your choice of Seasoned Fries or Sweet Potato Fries.</p>
-          <p style="color:#a99bbf; font-size:0.95rem; margin-bottom:0.3rem;">Upgrade your side with:</p>
-          <ul style="color:#a99bbf; font-size:0.95rem; margin:0 0 1.2rem 1.4rem; padding:0; list-style:disc;">
-            <li>House Salad +$2</li>
-            <li>Truffle-Balsamic Brussels Sprouts +$3</li>
-          </ul>
-          <ul class="menu-list">
-            <li><div><span class="item-name">The Big Rig Burger</span><span class="item-desc">A house-ground pork-and-lamb patty topped with melted American cheese, shredded lettuce, tomato, red onion, pickles, and house aioli on a toasted brioche bun.</span></div><span class="item-price">$18.99</span></li>
-            <li><div><span class="item-name">Crispy Chicken Sandwich</span><span class="item-desc">A hand-breaded crispy chicken breast topped with shredded lettuce, tomato, pickles, and roasted garlic mayo on a toasted brioche bun.</span></div><span class="item-price">$16.99</span></li>
-            <li><div><span class="item-name">Black Bean Burger</span><span class="item-desc">A seasoned black bean patty topped with lettuce, tomato, red onion, pickles, and house aioli on a toasted brioche bun.</span></div><span class="item-price">$15.99</span></li>
-            <li><div><span class="item-name">Turkey Club Sandwich</span><span class="item-desc">Roasted turkey, smoked ham, crispy bacon, American cheese, lettuce, tomato, and mayo stacked on toasted Texas toast.</span></div><span class="item-price">$16.99</span></li>
-          </ul>
-        </div>
-
-        <!-- Tacos -->
-        <div class="sub-panel active" data-sub-panel="tacos">
-          <h2>Tacos</h2>
-          <p style="color:#a99bbf; font-size:0.95rem; margin-bottom:1.2rem;">Three tacos served with seasoned tortilla chips and house salsa.</p>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Grilled Baja Shrimp</span><span class="item-desc">Grilled seasoned shrimp topped with crunchy house slaw, pico de gallo, and chipotle-lime crema on warm flour tortillas.</span></div><span class="item-price">$16.99</span></li>
-            <li><div><span class="item-name">Street-Style Chicken</span><span class="item-desc">Shredded chicken tinga topped with pico de gallo, pickled red onions, cilantro, Parmesan cheese, and cilantro-lime vinaigrette on warm corn tortillas.</span></div><span class="item-price">$15.99</span></li>
-          </ul>
-        </div>
-
-        <!-- Entrees -->
-        <div class="sub-panel active" data-sub-panel="entrees">
-          <h2>Entrees</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Chicken Tender Basket</span><span class="item-desc">Crispy hand-breaded chicken tenders served with seasoned fries, house-made coleslaw, and your choice of ranch, honey mustard, or barbecue sauce.</span></div><span class="item-price">$16.99</span></li>
-            <li><div><span class="item-name">Fish &amp; Chips</span><span class="item-desc">Crispy beer-battered pollock served with seasoned fries, house-made coleslaw, tartar sauce, and fresh lemon.</span></div><span class="item-price">$18.99</span></li>
-            <li><div><span class="item-name">Blackened Salmon</span><span class="item-desc">Pistachio-crusted salmon served over your choice of garlic-butter rice or cilantro-lime rice, with seasonal vegetables and a white-wine cream sauce.</span></div><span class="item-price">$25.99</span></li>
-            <li><div><span class="item-name">Chicken &amp; Mushroom Risotto</span><span class="item-desc">Grilled chicken breast served over creamy wild mushroom risotto, finished with Parmesan, fresh herbs, and a white-wine cream sauce.</span></div><span class="item-price">$21.99</span></li>
-            <li><div><span class="item-name">Creamy Alfredo Pasta</span><span class="item-desc">Penne and roasted red peppers tossed in a creamy Parmesan Alfredo sauce and served with garlic toast.<br><em>*Add Grilled Chicken +$5 · Grilled Shrimp +$7</em></span></div><span class="item-price">$16.99</span></li>
-            <li><div><span class="item-name">Garden Vegetable Marinara</span><span class="item-desc">Penne tossed with roasted bell peppers, onions, mushrooms, and spinach in house marinara, finished with Parmesan and served with garlic toast.<br><em>*Add Grilled Chicken +$5 · Grilled Shrimp +$7</em></span></div><span class="item-price">$16.99</span></li>
-          </ul>
-        </div>
-
-        <!-- Sides -->
-        <div class="sub-panel active" data-sub-panel="sides">
-          <h2>Sides</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">House Salad</span></div><span class="item-price">$5.99</span></li>
-            <li><div><span class="item-name">Caesar Salad</span></div><span class="item-price">$5.99</span></li>
-            <li><div><span class="item-name">House-Made Coleslaw</span></div><span class="item-price">$4.99</span></li>
-            <li><div><span class="item-name">Garlic-Butter Rice</span></div><span class="item-price">$4.99</span></li>
-            <li><div><span class="item-name">Chips and Queso</span></div><span class="item-price">$7.99</span></li>
-            <li><div><span class="item-name">Vegetable Medley</span></div><span class="item-price">$5.99</span></li>
-            <li><div><span class="item-name">Truffle-Balsamic Brussels Sprouts</span><span class="item-desc">Crispy Brussels sprouts tossed with truffle seasoning, drizzled with balsamic glaze, and finished with shaved Parmesan.<br><em>*Add Bacon +$2.50</em></span></div><span class="item-price">$7.99</span></li>
-          </ul>
-        </div>
-
-        <!-- Kids -->
-        <div class="sub-panel active" data-sub-panel="kids">
-          <h2>Kids Menu <small style="font-size:0.75rem; color:#a99bbf; font-weight:400; text-transform:none; letter-spacing:0;">For guests 12 and under. Includes seasoned fries or fresh fruit and a kid-sized fountain drink.</small></h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Crispy Chicken Tenders</span><span class="item-desc">Two hand-breaded chicken tenders served with your choice of barbecue sauce, honey mustard, or ranch.</span></div><span class="item-price">$9.99</span></li>
-            <li><div><span class="item-name">Cheeseburger Sliders</span><span class="item-desc">Two mini house-ground pork-and-lamb patty burgers topped with melted American cheese and served on toasted Hawaiian rolls.</span></div><span class="item-price">$10.99</span></li>
-            <li><div><span class="item-name">Kids' Personal Pizza</span><span class="item-desc">A 10-inch personal pizza with house marinara and melted mozzarella.<br><em>*Add Veggies +$1 · Add Pepperoni +$1.50 · Add Chicken +$2.50</em></span></div><span class="item-price">$10.99</span></li>
-            <li><div><span class="item-name">Creamy Mac &amp; Cheese</span><span class="item-desc">Tender pasta tossed in a creamy cheese sauce.</span></div><span class="item-price">$9.99</span></li>
-          </ul>
-        </div>
-
-        <!-- Desserts -->
-        <div class="sub-panel active" data-sub-panel="desserts">
-          <h2>Desserts</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Classic Cheesecake</span><span class="item-desc">Rich, creamy baked cheesecake served with your choice of strawberry, mango, or chocolate sauce.</span></div><span class="item-price">$8.99</span></li>
-            <li><div><span class="item-name">Warm Brownie à la Mode</span><span class="item-desc">A warm chocolate brownie topped with vanilla ice cream and finished with chocolate sauce.</span></div><span class="item-price">$9.99</span></li>
-            <li><div><span class="item-name">Gulab Jamun à la Sundae</span><span class="item-desc">Warm Gulab jamun served with vanilla ice cream and crushed pistachios.</span></div><span class="item-price">$9.99</span></li>
-          </ul>
-        </div>
-
-        <!-- Soft Drinks -->
-        <div class="sub-panel active" data-sub-panel="softdrinks">
-          <h2>Soft Drinks &amp; Refreshers</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Fountain Soda</span><span class="item-desc">Your choice of fountain soft drink. Complimentary refills.</span></div><span class="item-price">$3.49</span></li>
-            <li><div><span class="item-name">Classic Lemonade</span><span class="item-desc">Refreshing lemonade served over ice.</span></div><span class="item-price">$3.99</span></li>
-            <li><div><span class="item-name">Strawberry Lemonade</span><span class="item-desc">Classic lemonade blended with strawberry purée and served over ice.</span></div><span class="item-price">$4.99</span></li>
-            <li><div><span class="item-name">Raspberry Lemonade</span><span class="item-desc">Classic lemonade blended with raspberry purée and served over ice.</span></div><span class="item-price">$4.99</span></li>
-            <li><div><span class="item-name">Rubble Refresher</span><span class="item-desc">Sparkling lime cooler made with fresh mint, sugar, and a savory masala spice blend. Sweet, tangy, and lightly spiced.</span></div><span class="item-price">$5.99</span></li>
-            <li><div><span class="item-name">Mango Smoothie</span><span class="item-desc">A chilled, creamy yogurt drink blended with sweet mango.</span></div><span class="item-price">$6.99</span></li>
-          </ul>
-        </div>
-
+        <div class="sub-panel active" data-sub-panel="starters"><h2>Appetizers</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="wings"><h2>Wings</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="salads"><h2>Fresh Salads</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="pizzas"><h2>Pizzas &amp; Flatbreads</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="burgers"><h2>Burgers &amp; Sandwiches</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="tacos"><h2>Tacos</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="entrees"><h2>Entrees</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="sides"><h2>Sides</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="kids"><h2>Kids Menu <small style="font-size:0.75rem;color:#a99bbf;font-weight:400;text-transform:none;letter-spacing:0;">For guests 12 and under. Includes seasoned fries or fresh fruit and a kid-sized fountain drink.</small></h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="desserts"><h2>Desserts</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel active" data-sub-panel="softdrinks"><h2>Soft Drinks &amp; Refreshers</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
       </div>
 
       <!-- HAPPY HOUR -->
       <div class="menu-panel sports-only" data-panel="happyhour">
-
-        <!-- Happy Hour Banner -->
-        <div style="background:rgba(228,87,46,0.12);border:1px solid rgba(228,87,46,0.4);border-radius:10px;padding:1.2rem 1.6rem;margin-bottom:1.8rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
-          <div>
-            <div style="font-family:'Oswald',sans-serif;font-size:1.1rem;letter-spacing:0.1em;text-transform:uppercase;color:#e4572e;font-weight:600;">Happy Hour Food</div>
-            <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-top:0.2rem;">Monday – Thursday &nbsp;·&nbsp; 11:00 AM – 6:00 PM</div>
-          </div>
+        <div style="background:rgba(228,87,46,0.12);border:1px solid rgba(228,87,46,0.4);border-radius:10px;padding:1.2rem 1.6rem;margin-bottom:1.8rem;">
+          <div style="font-family:'Oswald',sans-serif;font-size:1.1rem;letter-spacing:0.1em;text-transform:uppercase;color:#e4572e;font-weight:600;">Happy Hour Food</div>
+          <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-top:0.2rem;">Monday – Thursday &nbsp;·&nbsp; 11:00 AM – 6:00 PM</div>
         </div>
-
-        <ul class="menu-list">
-          <li><div><span class="item-name">Pretzel and Queso</span></div><span class="item-price">$8</span></li>
-          <li><div><span class="item-name">Tendies and Fries</span></div><span class="item-price">$8</span></li>
-          <li><div><span class="item-name">Flatbread — Pepperoni</span></div><span class="item-price">$10</span></li>
-          <li><div><span class="item-name">Flatbread — Margherita</span></div><span class="item-price">$10</span></li>
-          <li><div><span class="item-name">Flatbread — Chicken Alfredo</span></div><span class="item-price">$12</span></li>
-          <li><div><span class="item-name">Flatbread — Cheese</span></div><span class="item-price">$8</span></li>
-          <li><div><span class="item-name">Flatbread — Hawaiian</span></div><span class="item-price">$12</span></li>
-          <li><div><span class="item-name">Chips and Queso</span></div><span class="item-price">$6</span></li>
-          <li><div><span class="item-name">Stuffed Mushrooms</span></div><span class="item-price">$8</span></li>
-          <li><div><span class="item-name">Nachos — Personal Size</span></div><span class="item-price">$7</span></li>
-          <li><div><span class="item-name">Fried Mac and Cheese Bites</span></div><span class="item-price">$7</span></li>
-          <li><div><span class="item-name">6 Wings</span></div><span class="item-price">$7</span></li>
-          <li><div><span class="item-name">Cheese Quesadilla</span></div><span class="item-price">$8</span></li>
-          <li><div><span class="item-name">Fried Pickles</span></div><span class="item-price">$7</span></li>
-          <li><div><span class="item-name">Fried Jalapeños</span></div><span class="item-price">$7</span></li>
-          <li><div><span class="item-name">Cauliflower Bites</span></div><span class="item-price">$7</span></li>
-          <li><div><span class="item-name">Buffalo Chicken Sliders w/ Fries</span></div><span class="item-price">2/$10</span></li>
-        </ul>
-
+        <ul class="menu-list" id="happyhour-list"><li class="menu-loading">Loading…</li></ul>
       </div>
 
       <!-- DRINKS -->
       <div class="menu-panel sports-only" data-panel="drinks">
-
-        <!-- Happy Hour Banner -->
         <div style="background:rgba(228,87,46,0.12);border:1px solid rgba(228,87,46,0.4);border-radius:10px;padding:1.2rem 1.6rem;margin-bottom:1.8rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;">
           <div>
             <div style="font-family:'Oswald',sans-serif;font-size:1.1rem;letter-spacing:0.1em;text-transform:uppercase;color:#e4572e;font-weight:600;">Happy Hour</div>
             <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-top:0.2rem;">Monday – Thursday &nbsp;·&nbsp; 11:00 AM – 6:00 PM</div>
           </div>
           <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
-            <div style="text-align:center;">
-              <div style="font-family:'Oswald',sans-serif;font-size:1.5rem;color:#e4572e;font-weight:700;">$3.50</div>
-              <div style="color:rgba(255,255,255,0.65);font-size:0.8rem;">Well Drinks</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="font-family:'Oswald',sans-serif;font-size:1.5rem;color:#e4572e;font-weight:700;">$1 Off</div>
-              <div style="color:rgba(255,255,255,0.65);font-size:0.8rem;">All Drafts</div>
-            </div>
+            <div style="text-align:center;"><div style="font-family:'Oswald',sans-serif;font-size:1.5rem;color:#e4572e;font-weight:700;">$3.50</div><div style="color:rgba(255,255,255,0.65);font-size:0.8rem;">Well Drinks</div></div>
+            <div style="text-align:center;"><div style="font-family:'Oswald',sans-serif;font-size:1.5rem;color:#e4572e;font-weight:700;">$1 Off</div><div style="color:rgba(255,255,255,0.65);font-size:0.8rem;">All Drafts</div></div>
           </div>
         </div>
-
-        <!-- Drinks Sub-tabs -->
         <div class="sub-tabs" role="tablist">
           <button class="sub-tab active" data-dsub="bottles">Bottles &amp; Cans</button>
           <button class="sub-tab" data-dsub="drafts">Drafts</button>
           <button class="sub-tab" data-dsub="cocktails">Cocktails</button>
           <button class="sub-tab" data-dsub="mocktails">Mocktails</button>
         </div>
-
-        <!-- Bottles & Cans -->
-        <div class="sub-panel active" data-dsub-panel="bottles">
-          <h2>Bottles &amp; Cans</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Athletic Free Wave</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Athletic Upside Dawn</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Bud Light</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Coors Banquet</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Coors Light</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Corona</span></div><span class="item-price">$6.50</span></li>
-            <li><div><span class="item-name">Deep Ellum IPA</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Dogfish 60 Minute IPA</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Dos Equis</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Guinness</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Heineken</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Heineken 00 NA</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Kona Longboard</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Lagunitas</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Michelob Ultra</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Miller Lite</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Modelo</span></div><span class="item-price">$6.50</span></li>
-            <li><div><span class="item-name">North Coast Old Rasputin</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Pacifico</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Real Ale Davis Back Bone</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Saint Arnold Fancy Lawnmower</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Topo Chico Strawberry Guava</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Truly</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">White Claw</span></div><span class="item-price">$6.50</span></li>
-          </ul>
-        </div>
-
-        <!-- Cocktails -->
-        <div class="sub-panel" data-dsub-panel="cocktails">
-          <h2>Cocktails</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">South of the Border</span><span class="item-desc">Our take on an Old-Fashioned with a Teremana Reposado tequila twist</span></div><span class="item-price">$14</span></li>
-            <li><div><span class="item-name">Texas Side Saddle</span><span class="item-desc">Bougie cocktail made with Hennessy, orange liqueur, lemon juice, and a sugared rim</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Under Rhi's Umbrella</span><span class="item-desc">Hendrick's gin, Elderflower liqueur, and fresh lemon juice</span></div><span class="item-price">$14</span></li>
-            <li><div><span class="item-name">Rama Mama</span><span class="item-desc">Our house-made Agua Fresca combined with Deep Eddy's peach vodka with a Tajin rim</span></div><span class="item-price">$10</span></li>
-            <li><div><span class="item-name">Derby Julep</span><span class="item-desc">A boozy classic made with Woodford Reserve bourbon and fresh mint</span></div><span class="item-price">$14</span></li>
-            <li><div><span class="item-name">Dill with the Devil</span><span class="item-desc">Spicy pickle martini served with a house brined pickle, Titos vodka and a kick</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Midnight Kiss</span><span class="item-desc">Triple chocolate martini made for temptation</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">The Dangerous Type</span><span class="item-desc">A James Bond Vesper made with Weber Ranch Vodka, Bombay Sapphire Gin and a lemon twist</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Porchlight Lemon Drop</span><span class="item-desc">A classic lemon drop made with house-made lavender simple syrup</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Southern Storm</span><span class="item-desc">Fresh-squeezed lime juice and ginger beer topped with a dark Myer's Rum float</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">The Governor</span><span class="item-desc">Our twist on a classic Manhattan made with Makers Mark bourbon and Luxardo cherries</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Bee Sting</span><span class="item-desc">Take your tequila up a notch with house-made jalapeno simple syrup and grapefruit juice</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Empress 75</span><span class="item-desc">Empress Indigo Gin and lemon juice topped with Prosecco</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Frisco Spritz</span><span class="item-desc">An Aperol Spritz made with house-made rosemary simple syrup, vodka, lemon, and Prosecco</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Don Draper</span><span class="item-desc">A smoky old-fashioned made with Buffalo Trace bourbon and served over an ice rock</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Lonestar Espresso</span><span class="item-desc">Vanilla vodka, Kahlua, and espresso</span></div><span class="item-price">$12</span></li>
-            <li><div><span class="item-name">Big Red Limeade</span><span class="item-desc">Get your Sonic on with our boozy cherry limeade</span></div><span class="item-price">$10</span></li>
-          </ul>
-        </div>
-
-        <!-- Mocktails -->
-        <div class="sub-panel" data-dsub-panel="mocktails">
-          <h2>Mocktails</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">Havana Mojo</span><span class="item-desc">Cuban classic made with fresh strawberries, pineapple, and mint</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Freckled Ginger</span><span class="item-desc">House-made strawberry basil simple syrup, fresh lime juice, and ginger beer</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Rosy Mary</span><span class="item-desc">House-made rosemary simple syrup, fresh jalapeños, fresh lime juice, and soda</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Lavender Rain</span><span class="item-desc">House-made lavender simple syrup, fresh lime juice, and sprite</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Agua Fresca</span><span class="item-desc">Mexican favorite made from house-made fresh fruit juices</span></div><span class="item-price">$6</span></li>
-          </ul>
-        </div>
-
-        <!-- Drafts -->
-        <div class="sub-panel" data-dsub-panel="drafts">
-          <h2>Drafts</h2>
-          <ul class="menu-list">
-            <li><div><span class="item-name">903 Cervesa</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Angry Orchard</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Austin East Ciders — Pineapple</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">BB Vanilla Porter</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Blue Moon</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Brooklyn Lager</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Bud Light</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Community Mosaic IPA</span></div><span class="item-price">$9</span></li>
-            <li><div><span class="item-name">Coors Light</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Corona Premier</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Dallas Blonde</span></div><span class="item-price">$6.50</span></li>
-            <li><div><span class="item-name">Manhattan Project Half-Life</span></div><span class="item-price">$9</span></li>
-            <li><div><span class="item-name">Karbach Love Street Blonde</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Kona Big Wave</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Live Oak Hefeweizen</span></div><span class="item-price">$7.50</span></li>
-            <li><div><span class="item-name">Mango Cart</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Michelob Ultra</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Miller Lite</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Modelo</span></div><span class="item-price">$6</span></li>
-            <li><div><span class="item-name">Shiner Bock</span></div><span class="item-price">$6.50</span></li>
-            <li><div><span class="item-name">Shiner Seasonal</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Stella Artois</span></div><span class="item-price">$8</span></li>
-            <li><div><span class="item-name">Texas Red</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Doctor Bock</span></div><span class="item-price">$7</span></li>
-            <li><div><span class="item-name">Dos Equis</span></div><span class="item-price">$6</span></li>
-          </ul>
-        </div>
-
+        <div class="sub-panel active" data-dsub-panel="bottles"><h2>Bottles &amp; Cans</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel" data-dsub-panel="drafts"><h2>Drafts</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel" data-dsub-panel="cocktails"><h2>Cocktails</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
+        <div class="sub-panel" data-dsub-panel="mocktails"><h2>Mocktails</h2><ul class="menu-list"><li class="menu-loading">Loading…</li></ul></div>
       </div>
 
-      <!-- LOUNGE MENU — lounge mode only -->
+      <!-- LOUNGE -->
       <div class="lounge-only lounge-always-show">
-
-        <!-- Lounge top-level tabs -->
         <div class="menu-tabs" id="loungeTabs" role="tablist">
           <button class="menu-tab active" data-ltab="hookah">Hookah</button>
           <button class="menu-tab" data-ltab="beverages">Beverages</button>
           <button class="menu-tab" data-ltab="snacks">Snacks &amp; More</button>
         </div>
 
-        <!-- ── HOOKAH ── -->
+        <!-- HOOKAH -->
         <div class="lounge-panel active" data-lpanel="hookah">
-
-          <div class="hk-section">
-            <h2 class="hk-heading">House Blends</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Excavate Reserve</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Dark Matter</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Excavate Nights</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Thee Deep Dig</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Night Shift</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Mid Night Smoke</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Smoke and Mirror</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Desert Storm</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Underground</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Mint Loader</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Star Buzz</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Blue Mist</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Miami Nights</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Sex on the Beach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Safari Melon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">White Peach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Melon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Strawberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Fumari</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Vanilla</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">White Gummy Bear</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Ambrosia</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Citrus Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Fruit Flavors</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Double Apple</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Grape</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Orange</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Lemon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Watermelon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Strawberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Blueberry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Mango</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Peach</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Pineapple</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Kiwi</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Guava</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Adalya</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Love 66</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Lady Killer</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Skyfall</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Magic Love</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Code69</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Ice</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Blue Melon</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Afzal</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Lychee</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Paan Ras</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Kesar Paan</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Paan Masala</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Rose</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Hazlenut</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Special Pan</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Sweet Pan</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Pan Twist</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Grapefruit</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Blue Lychee</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Al Fakher</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Blueberry Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Orange Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Lemon Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Watermelon Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Coconut</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Gum</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Berry</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-              <div class="hk-item"><span class="hk-name">Mint</span><span class="hk-dots"></span><span class="hk-price">$27.99</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Add Ons</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Ice Base</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Mocktail Base</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Milk Base</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Ice Hose</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-            </div>
-          </div>
-
+          <div class="hk-section" data-hk-section="House Blends"><h2 class="hk-heading">House Blends</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-hk-section="Star Buzz"><h2 class="hk-heading">Star Buzz</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-hk-section="Fumari"><h2 class="hk-heading">Fumari</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-hk-section="Fruit Flavors"><h2 class="hk-heading">Fruit Flavors</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-hk-section="Adalya"><h2 class="hk-heading">Adalya</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-hk-section="Afzal"><h2 class="hk-heading">Afzal</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-hk-section="Al Fakher"><h2 class="hk-heading">Al Fakher</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-hk-section="Add Ons"><h2 class="hk-heading">Add Ons</h2><div class="hk-list"></div></div>
           <div class="hk-policy">
             <h4>Hookah Policy</h4>
             <p>Max 2 Persons per Hookah</p>
             <p>Additional Person charge — $6.99</p>
             <p class="hk-note">Some items may contain allergens. Please notify your server of any dietary restrictions before ordering.</p>
           </div>
-
         </div>
 
-        <!-- ── BEVERAGES ── -->
+        <!-- BEVERAGES -->
         <div class="lounge-panel" data-lpanel="beverages">
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Alcoholic Beverages</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Revolver Blood and Honey</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Corona Extra</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Michelob Ultra</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Modelo Especial</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Shiner Bock</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Heineken</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Dos Equis</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Bud Light</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Lone River Ranch Water</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">High Noon</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Taj Mahal</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Arka</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Flying Horse</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Heineken 0.0</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Beverages</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Pepsi</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Pepsi Zero Sugar</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Coke</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Coke Zero</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Poppi</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Ginger Ale</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Mountain Dew</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Strawberry Lemonade</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Tropicana</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Cranberry Juice</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Starbucks</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Red Bull</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Red Bull Sugar Free</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Club Soda</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Coconut Water</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Brewed Tea Lemon</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Brewed Tea Unsweetened</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Hot Teas</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Green Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Black Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Turmeric Chamomile Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Turmeric Citrus Ginger Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Turmeric Ginger Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Turmeric Moringa Tea</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-            </div>
-          </div>
-
+          <div class="hk-section" data-bev-section="Alcoholic Beverages"><h2 class="hk-heading">Alcoholic Beverages</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-bev-section="Beverages"><h2 class="hk-heading">Beverages</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-bev-section="Hot Teas"><h2 class="hk-heading">Hot Teas</h2><div class="hk-list"></div></div>
         </div>
 
-        <!-- ── SNACKS & MORE ── -->
+        <!-- SNACKS -->
         <div class="lounge-panel" data-lpanel="snacks">
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Snacks</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Sun Chips</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Doritos</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Fritos</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Cheetos</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Lays</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Ruffles Cheddar &amp; Sour Cream</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Nuts</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-            </div>
-          </div>
-
-          <div class="hk-section">
-            <h2 class="hk-heading">Ice Creams &amp; Kulfis</h2>
-            <div class="hk-list">
-              <div class="hk-item"><span class="hk-name">Ice Cream</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-              <div class="hk-item"><span class="hk-name">Kulfis</span><span class="hk-dots"></span><span class="hk-price">—</span></div>
-            </div>
-          </div>
-
+          <div class="hk-section" data-snk-section="Snacks"><h2 class="hk-heading">Snacks</h2><div class="hk-list"></div></div>
+          <div class="hk-section" data-snk-section="Ice Creams & Kulfis"><h2 class="hk-heading">Ice Creams &amp; Kulfis</h2><div class="hk-list"></div></div>
         </div>
-
-      </div><!-- end lounge menu -->
+      </div>
 
     </div>
   </section>
@@ -775,6 +245,7 @@
 
   <div class="mode-flash" id="modeFlash"></div>
   <script src="app.js"></script>
+
   <script>
     // Food menu sub-tabs
     document.querySelectorAll('[data-sub]').forEach(btn => {
@@ -786,7 +257,8 @@
         if (target === 'all') {
           document.querySelectorAll('[data-sub-panel]').forEach(p => p.classList.add('active'));
         } else {
-          document.querySelector('[data-sub-panel="' + target + '"]').classList.add('active');
+          const el = document.querySelector('[data-sub-panel="' + target + '"]');
+          if (el) el.classList.add('active');
         }
       });
     });
@@ -798,20 +270,129 @@
         document.querySelectorAll('[data-dsub]').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('[data-dsub-panel]').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
-        document.querySelector('[data-dsub-panel="' + target + '"]').classList.add('active');
+        const el = document.querySelector('[data-dsub-panel="' + target + '"]');
+        if (el) el.classList.add('active');
       });
     });
 
-    // Lounge top-level tabs
+    // Lounge tabs
     document.querySelectorAll('[data-ltab]').forEach(btn => {
       btn.addEventListener('click', () => {
         const target = btn.dataset.ltab;
         document.querySelectorAll('[data-ltab]').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('[data-lpanel]').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
-        document.querySelector('[data-lpanel="' + target + '"]').classList.add('active');
+        const el = document.querySelector('[data-lpanel="' + target + '"]');
+        if (el) el.classList.add('active');
       });
     });
+
+    // ── Google Sheets fetch ──
+    (function () {
+      const SHEET_ID = '1yEQKYwEtMKKKz-jpTRtbiAYQ_bht3AZ9wbxAy7poBZQ';
+
+      async function fetchSheet(name) {
+        const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:json&sheet=' + encodeURIComponent(name);
+        const res = await fetch(url);
+        const text = await res.text();
+        const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\)/)[1]);
+        const cols = json.table.cols.map(c => c.label);
+        return json.table.rows
+          .map(row => {
+            const obj = {};
+            row.c.forEach((cell, i) => {
+              obj[cols[i]] = (cell && cell.v != null) ? String(cell.v).trim() : '';
+            });
+            return obj;
+          })
+          .filter(row => Object.values(row).some(v => v !== ''));
+      }
+
+      function groupBy(arr, key) {
+        return arr.reduce((acc, item) => {
+          const k = item[key] || '';
+          if (!acc[k]) acc[k] = [];
+          acc[k].push(item);
+          return acc;
+        }, {});
+      }
+
+      function menuListHTML(items) {
+        return items.map(item => {
+          const hasDesc = item.Description || item.Notes;
+          return '<li><div><span class="item-name">' + (item.Name || '') + '</span>' +
+            (hasDesc ? '<span class="item-desc">' + (item.Description || '') + (item.Notes ? '<br><em>' + item.Notes + '</em>' : '') + '</span>' : '') +
+            '</div><span class="item-price">' + (item.Price || '') + '</span></li>';
+        }).join('');
+      }
+
+      function hkListHTML(items) {
+        return items.map(item =>
+          '<div class="hk-item"><span class="hk-name">' + item.Name + '</span><span class="hk-dots"></span><span class="hk-price">' + item.Price + '</span></div>'
+        ).join('');
+      }
+
+      // Food
+      fetchSheet('Food').then(items => {
+        const map = {
+          'Appetizers': 'starters', 'Wings': 'wings', 'Salads': 'salads',
+          'Pizzas & Flatbreads': 'pizzas', 'Burgers & Sandwiches': 'burgers',
+          'Tacos': 'tacos', 'Entrees': 'entrees', 'Sides': 'sides',
+          'Kids': 'kids', 'Desserts': 'desserts', 'Soft Drinks': 'softdrinks'
+        };
+        const grouped = groupBy(items, 'Section');
+        Object.entries(map).forEach(([section, panelId]) => {
+          const ul = document.querySelector('[data-sub-panel="' + panelId + '"] .menu-list');
+          if (ul) ul.innerHTML = menuListHTML(grouped[section] || []);
+        });
+      });
+
+      // Happy Hour
+      fetchSheet('HappyHour').then(items => {
+        const ul = document.getElementById('happyhour-list');
+        if (ul) ul.innerHTML = menuListHTML(items);
+      });
+
+      // Drinks
+      fetchSheet('Drinks').then(items => {
+        const map = {
+          'Bottles & Cans': 'bottles', 'Drafts': 'drafts',
+          'Cocktails': 'cocktails', 'Mocktails': 'mocktails'
+        };
+        const grouped = groupBy(items, 'Section');
+        Object.entries(map).forEach(([section, panelId]) => {
+          const ul = document.querySelector('[data-dsub-panel="' + panelId + '"] .menu-list');
+          if (ul) ul.innerHTML = menuListHTML(grouped[section] || []);
+        });
+      });
+
+      // Hookah
+      fetchSheet('Hookah').then(items => {
+        const grouped = groupBy(items, 'Section');
+        document.querySelectorAll('[data-hk-section]').forEach(el => {
+          const list = el.querySelector('.hk-list');
+          if (list) list.innerHTML = hkListHTML(grouped[el.dataset.hkSection] || []);
+        });
+      });
+
+      // Beverages
+      fetchSheet('Beverages').then(items => {
+        const grouped = groupBy(items, 'Section');
+        document.querySelectorAll('[data-bev-section]').forEach(el => {
+          const list = el.querySelector('.hk-list');
+          if (list) list.innerHTML = hkListHTML(grouped[el.dataset.bevSection] || []);
+        });
+      });
+
+      // Snacks
+      fetchSheet('Snacks').then(items => {
+        const grouped = groupBy(items, 'Section');
+        document.querySelectorAll('[data-snk-section]').forEach(el => {
+          const list = el.querySelector('.hk-list');
+          if (list) list.innerHTML = hkListHTML(grouped[el.dataset.snkSection] || []);
+        });
+      });
+    })();
   </script>
 </body>
 </html>
